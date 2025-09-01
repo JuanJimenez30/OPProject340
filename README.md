@@ -1,8 +1,8 @@
 ## Title
-> Mowjados INC
+> Greensboro Lawncare Company
 
 ## Team Members
-> Team Member #1 Juan Jimenez Mora \
+> Team Member #1 Juan Jimenez Mora 
 
 
 
