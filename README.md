@@ -8,7 +8,7 @@
 > Sammy Arreaza
 
 ## Description 
-> Mowjados INC (MI) is a web-based platform designed to help customers select from a variety of lawncare services. Customers can browse those services, view available bookings, and leave reviews based on performance and quality of the desired service(s). MI manages their offerings, updates their availability schedules, and track customer engagement. The system supports multiple user roles including customers and provider; each with tailored services to ensure quality-driven lawncare services.
+> Greensboro Lawncare Company (GLC) is a web-based platform designed to help customers select from a variety of lawncare services. Customers can browse those services, view available bookings, and leave reviews based on performance and quality of the desired service(s). GLC manages their offerings, updates their availability schedules, and track customer engagement. The system supports multiple user roles including customers and provider; each with tailored services to ensure quality-driven lawncare services.
 >
 
 ## App Functions
