@@ -1,5 +1,5 @@
 # Software Requirements Specification
-## For <project name>
+## For <OPProject340>
 
 Version 0.1  
 Prepared by <Sammy Arreaza, Juan Jimenez>  
@@ -35,11 +35,11 @@ Table of Contents
     * 3.2.7 [Deadline](#327-deadline)
 
 ## Revision History
-| Name | Date    | Reason For Changes  | Version   |
-| ---- | ------- | ------------------- | --------- |
-|      |         |                     |           |
-|      |         |                     |           |
-|      |         |                     |           |
+| Name       | Date    | Reason For Changes  | Version   |
+| Juan/sammy | ------- | Initial SRS         |    1.0    |
+|            |         |                     |           |
+|            |         |                     |           |
+|            |         |                     |           |
 
 ## 1. Introduction
 
@@ -82,18 +82,20 @@ List any assumed factors (as opposed to known facts) that could affect the requi
 
 ### 3.1 Functional Requirements 
 
-
-
-
-
-
-
+-FR0: The system will allow customer to create log-in/create account.
+-FR1: The system shall allow customer to select a lawncare service.
+-FR2: The system shall allow customer to select a time frame (Day & Time).
+-FR3: The system shall allow customer to have a checkout option and enter card information.
+-FR4: The system shall allow customer to enter reviews for services.
+-FR5: The system shall allow customer to change/cancel service.
+-FR6: The system shall allow customer to view cart. 
 -FR7: The system shall allow provider to create/delete services.
 -FR8: The system shall allow provider to log-in/create account.
 -FR9: The system shall allow provider to create/delete timeframes (day/time) for services.
 -FR10: The system shall allow provider to reply to reviews.
 -FR11: The system shall allow provider to view customer information.
 -FR12: The system shall allow provider to accept/deny requested services of a customer.
+
 
 #### 3.1.1 User interfaces
 Define the software components for which a user interface is needed. Describe the logical characteristics of each interface between the software product and the users. This may include sample screen images, any GUI standards or product family style guides that are to be followed, screen layout constraints, standard buttons and functions (e.g., help) that will appear on every screen, keyboard shortcuts, error message display standards, and so on. Details of the user interface design should be documented in a separate user interface specification.
