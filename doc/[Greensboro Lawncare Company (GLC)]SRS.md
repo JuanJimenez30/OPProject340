@@ -77,36 +77,38 @@ We will be using Java and RestAPI to connect to external APIs and developed with
 
 ### 3.1 Functional Requirements 
 
--FR0: The system will allow customer to create log-in/create account.
--FR1: The system shall allow customer to select a lawn care service.
--FR2: The system shall allow customer to select a time frame (Day & Time).
--FR3: The system shall allow customer to have a checkout option and enter card information.
--FR4: The system shall allow customer to enter reviews for services.
--FR5: The system shall allow customer to change/cancel service.
--FR6: The system shall allow customer to view cart. 
--FR7: The system shall allow provider to create/delete services.
--FR8: The system shall allow provider to log-in/create account.
--FR9: The system shall allow provider to create/delete timeframes (day/time) for services.
--FR10: The system shall allow provider to reply to reviews.
--FR11: The system shall allow provider to view customer information.
--FR12: The system shall allow provider to accept/deny requested services of a customer.
+- FR0: The system will allow customer to create log-in/create account.
+- FR1: The system shall allow customer to select a lawn care service.
+- FR2: The system shall allow customer to select a time frame (Day & Time).
+- FR3: The system shall allow customer to have a checkout option and enter card information.
+- FR4: The system shall allow customer to enter reviews for services.
+- FR5: The system shall allow customer to change/cancel service.
+- FR6: The system shall allow customer to view cart. 
+- FR7: The system shall allow provider to create/delete services.
+- FR8: The system shall allow provider to log-in/create account.
+- FR9: The system shall allow provider to create/delete timeframes (day/time) for services.
+- FR10: The system shall allow provider to reply to reviews.
+- FR11: The system shall allow provider to view customer information.
+- FR12: The system shall allow provider to accept/deny requested services of a customer.
 
 
 #### 3.1.1 User interfaces
-Define the software components for which a user interface is needed. Describe the logical characteristics of each interface between the software product and the users. This may include sample screen images, any GUI standards or product family style guides that are to be followed, screen layout constraints, standard buttons and functions (e.g., help) that will appear on every screen, keyboard shortcuts, error message display standards, and so on. Details of the user interface design should be documented in a separate user interface specification.
-
-Could be further divided into Usability and Convenience requirements.
+Web pages using HTML, CSS, and JavaScript.
 
 #### 3.1.2 Hardware interfaces
-Describe the logical and physical characteristics of each interface between the software product and the hardware components of the system. This may include the supported device types, the nature of the data and control interactions between the software and the hardware, and communication protocols to be used.
+Devices that have web browser capabilities.
 
 #### 3.1.3 Software interfaces
-Describe the connections between this product and other specific software components (name and version), including databases, operating systems, tools, libraries, and integrated commercial components. Identify the data items or messages coming into the system and going out and describe the purpose of each. Describe the services needed and the nature of communications. Refer to documents that describe detailed application programming interface protocols. Identify data that will be shared across software components. If the data sharing mechanism must be implemented in a specific way (for example, use of a global data area in a multitasking operating system), specify this as an implementation constraint.
+- Java jdk 23
+- MySQL
+- SpringBoot 3.4.5
 
 ### 3.2 Non Functional Requirements 
 
 #### 3.2.1 Performance
-If there are performance requirements for the product under various circumstances, state them here and explain their rationale, to help the developers understand the intent and make suitable design choices. Specify the timing relationships for real time systems. Make such requirements as specific as possible. You may need to state performance requirements for individual functional requirements or features.
+- NFR0: The LocalHarvest Hub system will consume less than 200 MB of memory
+- NFR1: The novice user will be able to select and book services in less than 6 or 7 minutes.
+- NFR2: The expert user will be able to select and book services in less than 3 minutes.
 
 #### 3.2.2 Security
 Specify any requirements regarding security or privacy issues surrounding use of the product or protection of the data used or created by the product. Define any user identity authentication requirements. Refer to any external policies or regulations containing security issues that affect the product. Define any security or privacy certifications that must be satisfied.
