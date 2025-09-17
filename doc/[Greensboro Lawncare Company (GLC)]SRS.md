@@ -53,11 +53,9 @@ The purpose of the Greensboro Lawncare Company system is to connect consumers wi
 
 ### 1.3 Definitions, Acronyms and Abbreviations                                                                                                                                                                                                               
 | Reference  | Definition 
-|
-|------------|------------------------------------------------------------------------------------------------
----------|
+|------------|------------------------------------------------------------------------------------------------|
 | Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub                 |
-| Postgresql | Open-source relational database management system.                                                                                                                                 |
+| MySQL | Open-source relational database management system.                                                                                                                                 |
 | SpringBoot | An open-source Java-based framework used to create a micro Service. This will be used to create and run our application.                                                           |
 | Spring MVC | Model-View-Controller. This is the architectural pattern that will be used to implement our system.                                                                                |
 | Spring Web | Will be used to build our web application by using Spring MVC. This is one of the dependencies of our system.                                                                      |
@@ -65,8 +63,7 @@ The purpose of the Greensboro Lawncare Company system is to connect consumers wi
 | HTML       | Hypertext Markup Language. This is the code that will be used to structure and design the web application and its content.                                                         |
 | CSS        | Cascading Style Sheets. Will be used to add styles and appearance to the web app.                                                                                                  |
 | JavaScript | An object-oriented computer programming language commonly used to create interactive effects within web browsers.Will be used in conjuction with HTML and CSS to make the web app. |
-| VS Code    | An integrated development environment (IDE) for Java. This is where our system will be created.                                                                                    |
-|            |                                                                                                                                                                                    |                                                                     
+| VS Code    | An integrated development environment (IDE) for Java. This is where our system will be created.                                                                                    |                                                                                                                                                                                                                           
 
 ### 1.4 References
 https://www.w3schools.com/js/
@@ -97,7 +94,8 @@ We will be using Java and RestAPI to connect to external APIs and developed with
 ### 3.1 Functional Requirements 
 
 - FR0: The system will allow customer to create log-in/create account.
-- FR1: The system shall allow customer to select a lawn care service.
+
+- FR1: The system shall allow customer to select a lawncare service.
 - FR2: The system shall allow customer to select a time frame (Day & Time).
 - FR3: The system shall allow customer to have a checkout option and enter card information.
 - FR4: The system shall allow customer to enter reviews for services.
@@ -130,19 +128,18 @@ Devices that have web browser capabilities.
 - NFR2: The expert user will be able to select and book services in less than 3 minutes.
 
 #### 3.2.2 Security
-Specify any requirements regarding security or privacy issues surrounding use of the product or protection of the data used or created by the product. Define any user identity authentication requirements. Refer to any external policies or regulations containing security issues that affect the product. Define any security or privacy certifications that must be satisfied.
+- NFR3: The system is going to be available only to authorized users, using their username and password.
 
 #### 3.2.3 Reliability
-Specify the factors required to establish the required reliability of the software system at time of delivery.
 
 #### 3.2.4 Availability
-Specify the factors required to guarantee a defined availability level for the entire system such as checkpoint, recovery, and restart.
+- NFR4: GLC will be available 24/7. Scheduled Maintenance should be initialized during scheduled low activity hours such as midnight to minimize conflict with users using the website.
 
 #### 3.2.5 Compliance
-Specify the requirements derived from existing standards or regulations
 
 #### 3.2.6 Cost
-Specify monetary cost of the software product.
+- NFR5: We expect to spend zero dollars on this project.
 
 #### 3.2.7 Deadline
-Specify schedule for delivery of the software product. 
+- NFR6: The final product must be delivered by December 2025.
+
