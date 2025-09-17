@@ -130,19 +130,17 @@ Describe the connections between this product and other specific software compon
 If there are performance requirements for the product under various circumstances, state them here and explain their rationale, to help the developers understand the intent and make suitable design choices. Specify the timing relationships for real time systems. Make such requirements as specific as possible. You may need to state performance requirements for individual functional requirements or features.
 
 #### 3.2.2 Security
-Specify any requirements regarding security or privacy issues surrounding use of the product or protection of the data used or created by the product. Define any user identity authentication requirements. Refer to any external policies or regulations containing security issues that affect the product. Define any security or privacy certifications that must be satisfied.
+- NFR#: The system is going to be available only to authorized users, using their username and password.
 
 #### 3.2.3 Reliability
-Specify the factors required to establish the required reliability of the software system at time of delivery.
 
 #### 3.2.4 Availability
-Specify the factors required to guarantee a defined availability level for the entire system such as checkpoint, recovery, and restart.
+NFR#: GLC will be available 24/7. Scheduled Maintenance should be initialized during scheduled low activity hours such as midnight to minimize conflict with users using the website.
 
 #### 3.2.5 Compliance
-Specify the requirements derived from existing standards or regulations
 
 #### 3.2.6 Cost
-Specify monetary cost of the software product.
+- NFR#: We expect to spend zero dollars on this project.
 
 #### 3.2.7 Deadline
-Specify schedule for delivery of the software product.
+- NFR#: The final product must be delivered by December 2025.
