@@ -35,11 +35,12 @@ Table of Contents
     * 3.2.7 [Deadline](#327-deadline)
 
 ## Revision History
-| Name       | Date    | Reason For Changes  | Version   |
-| Juan/sammy | ------- | Initial SRS         |    1.0    |
-|            |         |                     |           |
-|            |         |                     |           |
-|            |         |                     |           |
+| Name         | Date    | Reason For Changes | Version |
+|--------------|---------|--------------------|---------|
+| Juan / Sammy | 9/17/25 | Initial SRS        | 1.0     |
+|              |         |                    |         |
+|              |         |                    |         |
+|              |         |                    |         |
 
 ## 1. Introduction
 
@@ -64,12 +65,11 @@ The purpose of the Greensboro Lawncare Company system is to connect consumers wi
 | CSS        | Cascading Style Sheets. Will be used to add styles and appearance to the web app.                                                                                                  |
 | JavaScript | An object-oriented computer programming language commonly used to create interactive effects within web browsers.Will be used in conjuction with HTML and CSS to make the web app. |
 | VS Code    | An integrated development environment (IDE) for Java. This is where our system will be created.                                                                                    |                                                                                                                                                                                                                           
-
 ### 1.4 References
-https://www.w3schools.com/js/
-https://spring.io/guides
-https://www.w3schools.com/Html/html_comments.asp
-https://www.w3schools.com/css/
+- <https://www.w3schools.com/js/>
+- <https://spring.io/guides>
+- <https://www.w3schools.com/Html/html_comments.asp>
+- <https://www.w3schools.com/css/>
 
 ### 1.5 Document Overview
 Section 1 is a general introduction to the document, intended for any readers. Section 2 is focused on the product and its features. This section is for customers and business stakeholders. Section 3 specifies the requirements and constraints for the product and development process. This section is intended for all stakeholders, especially the development team.
