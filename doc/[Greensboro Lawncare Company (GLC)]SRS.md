@@ -53,9 +53,7 @@ The purpose of the Greensboro Lawncare Company system is to connect consumers wi
 
 ### 1.3 Definitions, Acronyms and Abbreviations                                                                                                                                                                                                               
 | Reference  | Definition 
-|
-|------------|------------------------------------------------------------------------------------------------
----------|
+|------------|------------------------------------------------------------------------------------------------|
 | Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub                 |
 | Postgresql | Open-source relational database management system.                                                                                                                                 |
 | SpringBoot | An open-source Java-based framework used to create a micro Service. This will be used to create and run our application.                                                           |
@@ -65,8 +63,7 @@ The purpose of the Greensboro Lawncare Company system is to connect consumers wi
 | HTML       | Hypertext Markup Language. This is the code that will be used to structure and design the web application and its content.                                                         |
 | CSS        | Cascading Style Sheets. Will be used to add styles and appearance to the web app.                                                                                                  |
 | JavaScript | An object-oriented computer programming language commonly used to create interactive effects within web browsers.Will be used in conjuction with HTML and CSS to make the web app. |
-| VS Code    | An integrated development environment (IDE) for Java. This is where our system will be created.                                                                                    |
-|            |                                                                                                                                                                                    |                                                                     
+| VS Code    | An integrated development environment (IDE) for Java. This is where our system will be created.                                                                                    |                                                                                                                                                                                                                           
 
 ### 1.4 References
 https://www.w3schools.com/js/
@@ -101,19 +98,19 @@ List any assumed factors (as opposed to known facts) that could affect the requi
 
 ### 3.1 Functional Requirements 
 
--FR0: The system will allow customer to create log-in/create account.
--FR1: The system shall allow customer to select a lawncare service.
--FR2: The system shall allow customer to select a time frame (Day & Time).
--FR3: The system shall allow customer to have a checkout option and enter card information.
--FR4: The system shall allow customer to enter reviews for services.
--FR5: The system shall allow customer to change/cancel service.
--FR6: The system shall allow customer to view cart. 
--FR7: The system shall allow provider to create/delete services.
--FR8: The system shall allow provider to log-in/create account.
--FR9: The system shall allow provider to create/delete timeframes (day/time) for services.
--FR10: The system shall allow provider to reply to reviews.
--FR11: The system shall allow provider to view customer information.
--FR12: The system shall allow provider to accept/deny requested services of a customer.
+- FR0: The system will allow customer to create log-in/create account.
+- FR1: The system shall allow customer to select a lawncare service.
+- FR2: The system shall allow customer to select a time frame (Day & Time).
+- FR3: The system shall allow customer to have a checkout option and enter card information.
+- FR4: The system shall allow customer to enter reviews for services.
+- FR5: The system shall allow customer to change/cancel service.
+- FR6: The system shall allow customer to view cart. 
+- FR7: The system shall allow provider to create/delete services.
+- FR8: The system shall allow provider to log-in/create account.
+- FR9: The system shall allow provider to create/delete timeframes (day/time) for services.
+- FR10: The system shall allow provider to reply to reviews.
+- FR11: The system shall allow provider to view customer information.
+- FR12: The system shall allow provider to accept/deny requested services of a customer.
 
 
 #### 3.1.1 User interfaces
