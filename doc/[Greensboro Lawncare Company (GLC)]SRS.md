@@ -55,7 +55,7 @@ The purpose of the Greensboro Lawncare Company system is to connect consumers wi
 | Reference  | Definition 
 |------------|------------------------------------------------------------------------------------------------|
 | Java       | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub                 |
-| Postgresql | Open-source relational database management system.                                                                                                                                 |
+| MySQL | Open-source relational database management system.                                                                                                                                 |
 | SpringBoot | An open-source Java-based framework used to create a micro Service. This will be used to create and run our application.                                                           |
 | Spring MVC | Model-View-Controller. This is the architectural pattern that will be used to implement our system.                                                                                |
 | Spring Web | Will be used to build our web application by using Spring MVC. This is one of the dependencies of our system.                                                                      |
@@ -130,17 +130,17 @@ Describe the connections between this product and other specific software compon
 If there are performance requirements for the product under various circumstances, state them here and explain their rationale, to help the developers understand the intent and make suitable design choices. Specify the timing relationships for real time systems. Make such requirements as specific as possible. You may need to state performance requirements for individual functional requirements or features.
 
 #### 3.2.2 Security
-- NFR#: The system is going to be available only to authorized users, using their username and password.
+- NFR3: The system is going to be available only to authorized users, using their username and password.
 
 #### 3.2.3 Reliability
 
 #### 3.2.4 Availability
-NFR#: GLC will be available 24/7. Scheduled Maintenance should be initialized during scheduled low activity hours such as midnight to minimize conflict with users using the website.
+- NFR4: GLC will be available 24/7. Scheduled Maintenance should be initialized during scheduled low activity hours such as midnight to minimize conflict with users using the website.
 
 #### 3.2.5 Compliance
 
 #### 3.2.6 Cost
-- NFR#: We expect to spend zero dollars on this project.
+- NFR5: We expect to spend zero dollars on this project.
 
 #### 3.2.7 Deadline
-- NFR#: The final product must be delivered by December 2025.
+- NFR6: The final product must be delivered by December 2025.
