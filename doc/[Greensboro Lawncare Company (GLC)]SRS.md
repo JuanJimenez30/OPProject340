@@ -106,7 +106,7 @@ Devices that have web browser capabilities.
 ### 3.2 Non Functional Requirements 
 
 #### 3.2.1 Performance
-- NFR0: The LocalHarvest Hub system will consume less than 200 MB of memory
+- NFR0: The Greensboro Lawncare Company (GLC) Hub system will consume less than 200 MB of memory
 - NFR1: The novice user will be able to select and book services in less than 6 or 7 minutes.
 - NFR2: The expert user will be able to select and book services in less than 3 minutes.
 
@@ -126,4 +126,4 @@ Specify the requirements derived from existing standards or regulations
 Specify monetary cost of the software product.
 
 #### 3.2.7 Deadline
-Specify schedule for delivery of the software product.
+Specify schedule for delivery of the software product. 
