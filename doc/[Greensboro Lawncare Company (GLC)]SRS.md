@@ -1,5 +1,5 @@
 # Software Requirements Specification
-## For <OPProject340>
+## For OPProject340
 
 Version 0.1  
 Prepared by <Sammy Arreaza, Juan Jimenez>  
