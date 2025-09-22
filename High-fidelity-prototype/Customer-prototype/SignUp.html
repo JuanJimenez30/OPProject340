@@ -25,7 +25,6 @@
         <input type="password" id="password" name="password" required><br><br>
         <label for="Confirm_password">Confirm Password</label>
         <input type="password" id="Confirm_password" name="Confirm_password" required><br><br>
-        <!-- changed: submit so JS can validate before redirect -->
         <button type="submit">Sign-Up</button>
         <p>Already have an account?</p>
         <button type="button" onclick="location.href='/High-fidelity-prototype/LogIn.html'">Log In</button>
@@ -33,7 +32,6 @@
     </div>
 
     <script>
-    // Short hard-coded check: block sign up if passwords differ
     (function(){
       const form = document.getElementById('signupForm');
       const pw = document.getElementById('password');
@@ -46,9 +44,7 @@
           cpw.focus();
           return;
         }
-        // passwords match -> proceed (for prototype redirect to customer home)
-        // If you have server submission, remove the redirect and submit normally.
-        e.preventDefault(); // keep prototype client-only behavior
+        e.preventDefault(); 
         window.location.href = 'CustomerHome.html';
       });
     })();
