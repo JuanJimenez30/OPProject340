@@ -3,12 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="Service.css">
     <title>Provider Services</title>
 </head>
 <body>
-    <div id="services">
-        <h1>Our Services</h1>
-        <p>Here you can find information about the services we offer.</p>
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+            <span class="profile-icon">👤</span>
+            <span class="profile-text">Profile</span>
+        </button>
     </div>
+    <hr>
+         <div id="navigationMenu">
+        <button onclick="location.href='Home.html'" class="navButton">Home</button>
+        <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+        <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+        <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr> 
+        <h1>Available Services</h1>
+    <div id="services-container">
+        <!-- Add Service button (top-left) -->
+        <button id="add-service-btn" title="Add service" onclick="location.href='AddService.html'">+</button>
+        <!-- <h1>Service Management</h1> -->
+        <!-- <div id="service-options">
+            <button class="service-button" onclick="location.href='AddService.html'">Add/Delete Service</button>
+            <button class="service-button" onclick="location.href='UpdateService.html'">Update Service</button>
+           <button class="service-button" onclick="location.href='../Customer-prototype/Services.html'">Preview Services</button>
+        </div> -->
+        <div class = "rows">
+        <div class = "service-block">
+            <button class="delete-service" title="Delete service">−</button>
+            <h2>Mowing</h2>
+            <img src="/High-fidelity-prototype/images/MowingSPage.jpg" alt="Mowing" class="service-image">
+            <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing schedules to fit your needs.</p>
+            <!-- <p>Starting at $30 per visit</p> -->
+            <button class="modify-service" title="Modify service" onclick="location.href='Modify.html'">Modify</button>
+           
+        </div>
+        <div class = "service-block">
+            <button class="delete-service" title="Delete service">−</button>
+            <h2>Weed Eating</h2>
+            <img src="/High-fidelity-prototype/images/WeedEating.jpg" alt="Weed Eating" class="service-image">
+            <p>Maintain a clean and polished look for your lawn with our weed eating services. We trim around trees, fences, and hard-to-reach areas.</p>
+            <!-- <p>Starting at $20 per visit</p> -->
+            <button class="modify-service" title="Modify service" onclick="location.href='Modify.html'">Modify</button>
+        </div>
+        </div>
+        <div class = "rows">
+            <div class = "service-block">
+            <button class="delete-service" title="Delete service">−</button>
+            <h2>Power Washing</h2>
+            <img src="/High-fidelity-prototype/images/powerwashing.jpg" alt="Power Washing" class="service-image">
+            <p>Restore the appearance of your outdoor surfaces with our power washing services. We clean driveways, sidewalks, decks, and more.</p>
+            <button class="modify-service" title="Modify service" onclick="location.href='Modify.html'">Modify</button>
+            </div>
+            <div class = "service-block">
+            <button class="delete-service" title="Delete service">−</button>
+            <h2>Pest Control</h2>
+            <img src="/High-fidelity-prototype/images/pestcontrol.jpg" alt="Pest Control" class="service-image">
+            <p>Protect your lawn and garden from unwanted pests with our effective pest control solutions. We use safe and environmentally friendly methods.</p>
+            <button class="modify-service" title="Modify service" onclick="location.href='Modify.html'">Modify</button>
+            </div>
+        </div>
+        <script>
+            // Delete service handler (client-side prototype)
+            document.addEventListener('click', function(e){
+                if(e.target && e.target.classList.contains('delete-service')){
+                    const btn = e.target;
+                    const block = btn.closest('.service-block');
+                    if(!block) return;
+                    const title = block.querySelector('h2') ? block.querySelector('h2').innerText : 'this service';
+                        block.remove();
+                  
+                }
+            });
+        </script>
+     </div>
 </body>
 </html>
