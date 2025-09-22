@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="CustmomerProfile.css">
+    <title>Home Page</title>
 </head>
+
 <body>
-    <h1>Customer Profile Page</h1>
-    <p>This is the customer profile page.</p>
-    
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+            <span class="profile-icon">👤</span>
+            <span class="profile-text">Profile</span>
+        </button>
+    </div>
+    <div id="home-container">
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='CustomerHome.html'" class="navButton">Home</button>
+            <button onclick="location.href='Services.html'" class="navButton">Services</button>
+            <button onclick="location.href='ViewCartPage.html'" class="navButton">View Cart</button>
+            <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
+        </div>
+        <hr>
+        <div id="Customer-Info-Section">
+            <div class="info-box" >
+            <h2>Profile</h2>
+            <img src="/High-fidelity-prototype/images/default_profile.jpg" alt="Default profile" id="default-profile">
+            <h3>Name</h3>
+            <p>John Doe</p>
+            <h3>Email</h3>
+            <p>Email</p>
+            <h3>Phone Number</h3>
+            <p>123-456-7890</p>
+            <h3>Address</h3>
+            <p>123 Main St, Greensboro, NC 27401</p>
+            <h3>Payment Method</h3>
+            <p>Visa ending in 1234</p>
+            </div>
+            </div>
+        </div>
 </body>
+
 </html>

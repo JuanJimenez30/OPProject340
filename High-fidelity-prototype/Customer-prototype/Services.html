@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="CService.css">
+    <title>Provider Services</title>
 </head>
+
 <body>
-    <h1>Service page</h1>
-    <p>This is the service page.</p>
-    
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+            <span class="profile-icon">👤</span>
+            <span class="profile-text">Profile</span>
+        </button>
+    </div>
+    <hr>
+    <div id="navigationMenu">
+        <button onclick="location.href='CustomerHome.html'" class="navButton">Home</button>
+        <button onclick="location.href='Services.html'" class="navButton">Services</button>
+        <button onclick="location.href='ViewCartPage.html'" class="navButton">View Cart</button>
+        <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
+    </div>
+    <hr>
+    <h1>Available Services</h1>
+    <div id="services-container">
+        <div class="rows">
+            <div class="service-block">
+                <h2>Mowing</h2>
+                <img src="/High-fidelity-prototype/images/MowingSPage.jpg" alt="Mowing" class="service-image">
+                <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing
+                    schedules to fit your needs.</p>
+                <!-- <p>Starting at $30 per visit</p> -->
+                <button class="Add-Cart" title="Add to Cart" onclick="location.href='ViewCartPage.html'">Add to
+                    Cart</button>
+
+            </div>
+            <div class="service-block">
+                <h2>Weed Eating</h2>
+                <img src="/High-fidelity-prototype/images/WeedEating.jpg" alt="Weed Eating" class="service-image">
+                <p>Maintain a clean and polished look for your lawn with our weed eating services. We trim around trees,
+                    fences, and hard-to-reach areas.</p>
+                <!-- <p>Starting at $20 per visit</p> -->
+                <button class="Add-Cart" title="Add to Cart" onclick="location.href='ViewCartPage.html'">Add to
+                    Cart</button>
+            </div>
+        </div>
+        <div class="rows">
+            <div class="service-block">
+                <h2>Power Washing</h2>
+                <img src="/High-fidelity-prototype/images/powerwashing.jpg" alt="Power Washing" class="service-image">
+                <p>Restore the appearance of your outdoor surfaces with our power washing services. We clean driveways,
+                    sidewalks, decks, and more.</p>
+                <button class="Add-Cart" title="Add to Cart" onclick="location.href='ViewCartPage.html'">Add to
+                    Cart</button>
+            </div>
+
+            <div class="service-block">
+                <h2>Pest Control</h2>
+                <img src="/High-fidelity-prototype/images/pestcontrol.jpg" alt="Pest Control" class="service-image">
+                <p>Protect your lawn and garden from unwanted pests with our effective pest control solutions. We use
+                    safe and environmentally friendly methods.</p>
+                <button class="Add-Cart" title="Add to Cart" onclick="location.href='ViewCartPage.html'">Add to
+                    Cart</button>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
