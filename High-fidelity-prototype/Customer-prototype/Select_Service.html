@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
-    <link rel="stylesheet" href="CustmomerProfile.css">
+    <link rel="stylesheet" href="Select_Service.css">
     <title>Home Page</title>
 </head>
 
@@ -27,23 +27,28 @@
             <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
         </div>
         <hr>
-        <div id="Customer-Info-Section">
-            <div class="info-box lawncare">
-                <h2>Profile</h2>
-                <img src="/High-fidelity-prototype/images/default_profile.jpg" alt="Default profile" id="default-profile">
-                <h3>Name</h3>
-                <p>John Doe</p>
-                <h3>Email</h3>
-                <p>Email</p>
-                <h3>Phone Number</h3>
-                <p>123-456-7890</p>
-                <h3>Address</h3>
-                <p>123 Main St, Greensboro, NC 27401</p>
-                <h3>Payment Method</h3>
-                <p>Visa ending in 1234</p>
-                <button onclick="location.href='CustomerHome.html'">Back to Home</button>
+
+        <div id="background-section">
+        <div id="info-box">
+            <div class=service-block>
+                <h2>Mowing</h2>
+                <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing
+                    schedules to fit your needs.</p>
+
+                <h3>Select Available Service</h3>
+                
+                <div class="time-box">
+                    <input type="radio" id="one-time" name="service-type" value="one-time" >
+                    <label for="one-time">One-Time Service - $30</label><br>
+                    <input type="radio" id="weekly" name="service-type" value="weekly">
+                    <label for="weekly">Weekly Service - $25 per visit</label><br>
+                    <input type="radio" id="bi-weekly" name="service-type" value="bi-weekly">
+                    <label for="bi-weekly">Bi-Weekly Service - $28 per visit</label><br>
+                </div>
             </div>
         </div>
+        </div>
+
     </div>
 </body>
 
