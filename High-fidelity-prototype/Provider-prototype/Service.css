@@ -1,8 +1,4 @@
-h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    text-align: center;
-}
+
 .service-button {
     background-color: black;
     color: white;
@@ -26,7 +22,7 @@ h1 {
     box-sizing: border-box;
     margin: 0;
     padding: 40px 24px;
-    /* border: 2px solid black; */
+    margin-bottom: 20px;
     border-radius: 10px;
     background-color: rgb(170, 227, 180);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -51,12 +47,17 @@ h1 {
     z-index: 3; /* above the container content */
 }
 #add-service-btn:hover { background: #5bc4f0; } 
-h1 {
+.titles {
     font-size: 50px;
-    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
     text-align: center;
     text-decoration: underline;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
 }
+
 .rows {
     display: flex;
     flex-direction: row;
@@ -85,7 +86,7 @@ h1 {
     font-size: 40px;
     margin-bottom: 15px;
     margin-top: 5px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .service-block p {
     font-size: 20px;
@@ -93,7 +94,7 @@ h1 {
     text-indent: 3em;
 }
 .modify-service {
-    background-color: #0028f0; /* orange-ish for primary action */
+    background-color: #0028f0;
     color: white;
     border: 2px solid #554aed;
     border-radius: 6px;
@@ -108,16 +109,15 @@ h1 {
 }
 .service-image {
     width: 100%;
-    height: 50%; /* fixed image height to fit card */
+    height: 50%; 
     max-width: 410px;
     object-fit: cover;
     margin-bottom: 15px;
     border: 2px solid black;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* delete button inside service block */
-/* .service-block { position: relative; } */
 .delete-service {
     position: absolute;
     top: 8px;
@@ -137,6 +137,52 @@ h1 {
 }
 .delete-service:hover { background: darkred; }
 
-/* ensure modify button sits below description centered */
-/* .service-block { display: flex; flex-direction: column; }
-.service-block .modify-service { align-self: center; } */
+/* Add Service container consolidated styles */
+#add-service-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 600px;
+    max-width: 95%;
+    margin: 0 auto 40px auto;
+    background-color: #fff8e6; /* subtle off-white instead of beige */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+#add-service-container label {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+#add-service-container input,
+#add-service-container textarea,
+#add-service-container input[type="file"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#add-service-container button {
+    background-color: #0028f0;
+    color: white;
+    border: 2px solid #554aed;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+    align-self: center;
+    justify-content: center;
+}
+
+#add-service-container button:hover { background-color: #5bc4f0; }
+#add-service-page {
+background-color: rgb(176, 255, 201);
+margin-top: 0px;
+padding-bottom: 20px;
+padding-top: 20px;
+}

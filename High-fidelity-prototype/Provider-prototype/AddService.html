@@ -3,18 +3,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Service (Prototype)</title>
+   <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <title>Add Service Page</title>
     <link rel="stylesheet" href="Service.css">
 </head>
 <body>
+    
     <div id="header">
         <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
     </div>
     <hr>
-    <div style="max-width:800px;margin:40px auto;padding:20px;text-align:left;">
-        <h1>Add Service</h1>
-        <p>This is a placeholder Add Service page for the prototype. You can add form fields here later.</p>
+     <div id="navigationMenu">
+        <button onclick="location.href='Home.html'" class="navButton">Home</button>
+        <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+        <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+        <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr>
+        <div id="add-service-page">
+        <h1 class ="titles">Add Service</h1>
+    <div id="add-service-container">
+        
+            <label for="service-name">Service Name:</label>
+            <input type="text" id="service-name" name="service-name" required>
+
+            <label for="service-description">Service Description:</label>
+            <textarea id="service-description" name="service-description" required></textarea>
+
+            <label for="service-image">Upload Image:</label>
+            <input type="file" id="service-image" name="service-image" accept="image/*" required>
+
+            <label for="service-price">Service Price:</label>
+            <input type="number" id="service-price" name="service-price" required>
+   
+            <button type="submit">Add Service</button>
+    
         <button onclick="location.href='PServices.html'">Back to Services</button>
+        
     </div>
+        </div>
 </body>
 </html>
