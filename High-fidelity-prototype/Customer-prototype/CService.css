@@ -1,8 +1,20 @@
-h1 {
+/* h1 {
     font-size: 36px;
     margin-bottom: 30px;
     text-align: center;
+} */
+
+.titles {
+    font-size: 50px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
 }
+
 .service-button {
     background-color: black;
     color: white;
@@ -33,30 +45,7 @@ h1 {
     text-align: center;
 }
 
-/* add service (plus) button placed at top-left of services container */
-#add-service-btn {
-    position: absolute;
-    left: 16px; /* inside container padding */
-    top: 12px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #0028f0; /* blue plus */
-    color: white;
-    border: none;
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    z-index: 3; /* above the container content */
-}
-#add-service-btn:hover { background: #5bc4f0; } 
-h1 {
-    font-size: 50px;
-    margin-bottom: 30px;
-    text-align: center;
-    text-decoration: underline;
-}
+
 .rows {
     display: flex;
     flex-direction: row;
@@ -85,14 +74,14 @@ h1 {
     font-size: 40px;
     margin-bottom: 15px;
     margin-top: 5px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .service-block p {
     font-size: 20px;
     margin-bottom: 10px;
     text-indent: 3em;
 }
-.Add-Cart {
+.Select_service {
     background-color: #0028f0; /* orange-ish for primary action */
     color: white;
     border: 2px solid #554aed;
@@ -102,7 +91,7 @@ h1 {
     cursor: pointer;
     margin-top: 8px;
 }
-.Add-Cart:hover {
+.Select_service:hover {
     background-color: #5bc4f0;
     color: white;
 }
