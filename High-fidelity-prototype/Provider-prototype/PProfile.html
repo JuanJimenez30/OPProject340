@@ -3,12 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="PProfile.css">
     <title>Provider Profile</title>
 </head>
 <body>
+     <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+            <span class="profile-icon">👤</span>
+            <span class="profile-text">Profile</span>
+        </button>
+    </div>
+        <hr>
+         <div id="navigationMenu">
+        <button onclick="location.href='Home.html'" class="navButton">Home</button>
+        <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+        <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+        <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr> 
+        <div id="profile-page-container">
     <div id="provider-profile">
         <h1>Provider Profile</h1>
-        <p>Here you can find information about the provider.</p>
+        <img src="/High-fidelity-prototype/images/PProfileIcon.png" alt="Provider Profile Picture" id="Pprofile-picture">
+        <p><b>Name</b>:</p>
+        <p>John Doe</p>
+        <p><b>Email</b>:</p>
+        <p>john.doe@glc.com</p>
+        <p><b>Phone</b>:</p>
+        <p>(123) 456-7890</p>
+        <p><b>Company</b>:</p>
+        <p>Greensboro LawnCare Company</p>
+        <button onclick="location.href='Home.html'">Back to Home</button>
+
+    </div>
     </div>
 </body>
 </html>
