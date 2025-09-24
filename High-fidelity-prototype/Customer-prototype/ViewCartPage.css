@@ -1,0 +1,141 @@
+body, button, input, label, h1, h2, h3, h4, h5, h6, p, div, span {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+#cart-container {
+    background: #f7fff7;
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+    border: 2px solid #4CAF50;
+    max-width: 600px;
+    margin: 32px auto;
+    padding: 32px 28px;
+    text-align: center;
+}
+
+#cart-bg {
+    background: url('/High-fidelity-prototype/images/lawncare-for_background_profilePage.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+}
+
+.cart-item {
+    background: #f7fff7;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+    border: 1px solid #e0e0e0;
+    margin: 18px auto;
+    padding: 18px 16px;
+    max-width: 480px;
+    text-align: left;
+    position: relative;
+}
+
+.cart-item h2 {
+    font-size: 1.3rem;
+    color: #2e7d32;
+    margin-bottom: 8px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.cart-item p {
+    font-size: 1.08rem;
+    color: #444;
+    margin-bottom: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.remove-btn {
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    box-shadow: 0 2px 8px rgba(229,57,53,0.10);
+    transition: background 0.2s;
+}
+.remove-btn:hover {
+    background: #b71c1c;
+}
+
+.cart-summary {
+    background: #e8f5e9;
+    border-radius: 12px;
+    margin: 28px auto 0 auto;
+    padding: 24px 16px 32px 16px;
+    max-width: 480px;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+    border: 1px solid #c8e6c9;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* evenly space children */
+    height: 200px; /* set a fixed height for even spacing */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.cart-summary h2 {
+    font-size: 1.5rem;
+    color: #388e3c;
+    font-weight: bold;
+}
+
+#cart-total {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1b5e20;
+    /* margin-bottom: 5px; */
+    padding: 10px 0;
+}
+
+#checkout-btn {
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.10);
+    transition: background 0.2s;
+    /* margin-top: 5px; */
+}
+#checkout-btn:hover {
+    background: #388e3c;
+}
+
+/* Creative, bold, stylish cart title */
+.cart {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #388e3c;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    text-shadow: 2px 2px 8px rgba(76,175,80,0.10), 0 0 2px #fff;
+    background: linear-gradient(90deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-radius: 16px;
+    padding: 18px 0;
+    box-shadow: 0 4px 18px rgba(56,142,60,0.12);
+    transition: background 0.3s, color 0.3s;
+    max-width: 480px; /* match cart container and summary */
+    width: 100%;
+}
+.cart:hover {
+    background: linear-gradient(90deg, #c8e6c9 0%, #e8f5e9 100%);
+    color: #1b5e20;
+    text-decoration-color: #388e3c;
+}

@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="ViewCartPage.css">
+    <link rel="stylesheet" href="CService.css">
+    <title>View Cart Page</title>
 </head>
+
 <body>
-    <h1>view cart</h1>
-    <p>view cart</p>
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <div id="home-container">
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='CustomerHome.html'" class="navButton">Home</button>
+            <button onclick="location.href='Services.html'" class="navButton">Services</button>
+            <button onclick="location.href='ViewCartPage.html'" class="navButton">View Cart</button>
+            <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
+        </div>
+        <hr>
+    </div>
+    <div id="cart-bg">
+        <h1 class="cart">Cart</h1>
+        <div id="cart-container">
+            <div class="cart-item" data-price="30">
+                <h2>Mowing Service</h2>
+                <p>One-Time Service - $30</p>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="cart-item" data-price="50">
+                <h2>Pest Control</h2>
+                <p>Weekly Service - $50</p>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="cart-summary">
+                <h2>Total:</h2>
+                <span id="cart-total">$80</span>
+                <br>
+                <button id="checkout-btn" onclick="location.href='Success.html'">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('.cart-item').forEach(item => {
+                total += Number(item.getAttribute('data-price'));
+            });
+            document.getElementById('cart-total').textContent = '$' + total;
+        }
+
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                this.closest('.cart-item').remove();
+                updateTotal();
+            });
+        });
+
+        updateTotal();
+    </script>
 </body>
+
 </html>
