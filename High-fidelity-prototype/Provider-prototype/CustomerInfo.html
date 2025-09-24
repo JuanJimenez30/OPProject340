@@ -9,13 +9,19 @@
 </head>
 <body>
     <div id = "customer-info-page">
-         <div id="header">
+        <div id="header">
         <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
 
-        <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
-            <span class="profile-icon">👤</span>
-            <span class="profile-text">Profile</span>
-        </button>
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
     </div>
      <hr>
          <div id="navigationMenu">

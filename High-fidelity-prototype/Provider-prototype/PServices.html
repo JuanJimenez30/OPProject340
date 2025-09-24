@@ -11,10 +11,16 @@
     <div id="header">
         <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
 
-        <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
-            <span class="profile-icon">👤</span>
-            <span class="profile-text">Profile</span>
-        </button>
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
     </div>
     <hr>
          <div id="navigationMenu">
@@ -26,21 +32,15 @@
         <hr> 
         <h1 class = "titles">Available Services</h1>
     <div id="services-container">
-        <!-- Add Service button (top-left) -->
+
         <button id="add-service-btn" title="Add service" onclick="location.href='AddService.html'">+</button>
-        <!-- <h1>Service Management</h1> -->
-        <!-- <div id="service-options">
-            <button class="service-button" onclick="location.href='AddService.html'">Add/Delete Service</button>
-            <button class="service-button" onclick="location.href='UpdateService.html'">Update Service</button>
-           <button class="service-button" onclick="location.href='../Customer-prototype/Services.html'">Preview Services</button>
-        </div> -->
         <div class = "rows">
         <div class = "service-block">
             <button class="delete-service" title="Delete service">−</button>
             <h2>Mowing</h2>
             <img src="/High-fidelity-prototype/images/MowingSPage.jpg" alt="Mowing" class="service-image">
             <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing schedules to fit your needs.</p>
-            <!-- <p>Starting at $30 per visit</p> -->
+            
             <button class="modify-service" title="Modify service" onclick="location.href='Modify.html'">Modify</button>
            
         </div>
@@ -49,7 +49,7 @@
             <h2>Weed Eating</h2>
             <img src="/High-fidelity-prototype/images/WeedEating.jpg" alt="Weed Eating" class="service-image">
             <p>Maintain a clean and polished look for your lawn with our weed eating services. We trim around trees, fences, and hard-to-reach areas.</p>
-            <!-- <p>Starting at $20 per visit</p> -->
+            
             <button class="modify-service" title="Modify service" onclick="location.href='Modify.html'">Modify</button>
         </div>
         </div>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <script>
-            // Delete service handler (client-side prototype)
+           
             document.addEventListener('click', function(e){
                 if(e.target && e.target.classList.contains('delete-service')){
                     const btn = e.target;

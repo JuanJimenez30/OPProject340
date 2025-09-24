@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Service Page</title>
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="Service.css">
+</head>
+
+<body>
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div id="navigationMenu">
+        <button onclick="location.href='Home.html'" class="navButton">Home</button>
+        <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+        <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+        <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+    </div>
+    <hr>
+    <div id="modify-service-page">
+        <h1 class="titles">Modify Services</h1>
+        <div id="services-container">
+            <div class="rows">
+                <div class="service-block">
+                    <h2>Mowing</h2>
+                    <img src="/High-fidelity-prototype/images/MowingSPage.jpg" alt="Mowing" class="service-image">
+                    <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing schedules to fit your needs.</p>
+                </div>
+            </div>             
+            </div>
+        </div>
+    
+</body>
+
+</html>
+
+    <script>
+    // Prototype inline editor for .service-block
+    document.addEventListener('click', function (e) {
+        // handle clicking Modify - create button if missing
+        if (e.target && e.target.classList && e.target.classList.contains('modify-service')) {
+            openEditorForBlock(e.target.closest('.service-block'));
+        }
+    });
+
+    // If any cards don't have a Modify button, add it and wire up
+    document.querySelectorAll('.service-block').forEach(function(block){
+        if (!block.querySelector('.modify-service')){
+            const btn = document.createElement('button');
+            btn.className = 'modify-service';
+            btn.textContent = 'Modify';
+            btn.title = 'Modify service';
+            block.appendChild(btn);
+            btn.addEventListener('click', function(){ openEditorForBlock(block); });
+        }
+    });
+
+    function openEditorForBlock(block){
+        if(!block) return;
+        if (block.querySelector('.service-edit-form')) return; // already editing
+
+        // grab existing values
+        const titleEl = block.querySelector('h2');
+        const imgEl = block.querySelector('img');
+        const descEl = block.querySelector('p');
+
+        const orig = {
+            title: titleEl ? titleEl.innerText : '',
+            imgSrc: imgEl ? imgEl.src : '',
+            desc: descEl ? descEl.innerText : ''
+        };
+
+        // hide view elements
+        if (titleEl) titleEl.style.display = 'none';
+        if (imgEl) imgEl.style.display = 'none';
+        if (descEl) descEl.style.display = 'none';
+        const modifyBtn = block.querySelector('.modify-service');
+        if (modifyBtn) modifyBtn.style.display = 'none';
+
+        // build form
+        const form = document.createElement('div');
+        form.className = 'service-edit-form';
+
+        const titleInput = document.createElement('input');
+        titleInput.type = 'text';
+        titleInput.className = 'edit-title';
+        titleInput.value = orig.title;
+
+        const imgPreview = document.createElement('img');
+        imgPreview.className = 'edit-img-preview';
+        imgPreview.src = orig.imgSrc;
+
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.className = 'edit-img-file';
+
+        fileInput.addEventListener('change', function(evt){
+            const file = evt.target.files && evt.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev){ imgPreview.src = ev.target.result; };
+            reader.readAsDataURL(file);
+        });
+
+        const descInput = document.createElement('textarea');
+        descInput.className = 'edit-desc';
+        descInput.value = orig.desc;
+
+        const controls = document.createElement('div');
+        controls.className = 'edit-controls';
+
+        const saveBtn = document.createElement('button');
+        saveBtn.className = 'edit-save';
+        saveBtn.textContent = 'Save';
+
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = 'edit-cancel';
+        cancelBtn.textContent = 'Cancel';
+
+        controls.appendChild(saveBtn);
+        controls.appendChild(cancelBtn);
+
+        form.appendChild(titleInput);
+        form.appendChild(imgPreview);
+        form.appendChild(fileInput);
+        form.appendChild(descInput);
+        form.appendChild(controls);
+
+        block.appendChild(form);
+
+        // handle save
+        saveBtn.addEventListener('click', function(){
+            if (titleEl) titleEl.innerText = titleInput.value;
+            if (imgEl) imgEl.src = imgPreview.src;
+            if (descEl) descEl.innerText = descInput.value;
+
+            // cleanup
+            form.remove();
+            if (titleEl) titleEl.style.display = '';
+            if (imgEl) imgEl.style.display = '';
+            if (descEl) descEl.style.display = '';
+            if (modifyBtn) modifyBtn.style.display = '';
+        });
+
+        // handle cancel
+        cancelBtn.addEventListener('click', function(){
+            // restore originals
+            if (titleEl) titleEl.innerText = orig.title;
+            if (imgEl) imgEl.src = orig.imgSrc;
+            if (descEl) descEl.innerText = orig.desc;
+
+            form.remove();
+            if (titleEl) titleEl.style.display = '';
+            if (imgEl) imgEl.style.display = '';
+            if (descEl) descEl.style.display = '';
+            if (modifyBtn) modifyBtn.style.display = '';
+        });
+    }
+    </script>
