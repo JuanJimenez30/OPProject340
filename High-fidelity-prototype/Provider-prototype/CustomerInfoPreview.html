@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="/High-fidelity-prototype/Customer-prototype/CustmomerProfile.css">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+            <span class="profile-icon">👤</span>
+            <span class="profile-text">Profile</span>
+        </button>
+    </div>
+    <div id="home-container">
+        <hr>
+         <div id="navigationMenu">
+        <button onclick="location.href='Home.html'" class="navButton">Home</button>
+        <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+        <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+        <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr>
+        <div id="Customer-Info-Section">
+            <div class="info-box lawncare">
+                <h2>Profile</h2>
+                <img src="/High-fidelity-prototype/images/default_profile.jpg" alt="Default profile" id="default-profile">
+                <h3>Name</h3>
+                <p>John Doe</p>
+                <h3>Email</h3>
+                <p>Email</p>
+                <h3>Phone Number</h3>
+                <p>123-456-7890</p>
+                <h3>Address</h3>
+                <p>123 Main St, Greensboro, NC 27401</p>
+                <h3>Payment Method</h3>
+                <p>Visa ending in 1234</p>
+                <button onclick="location.href='Home.html'">Back to Home</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
