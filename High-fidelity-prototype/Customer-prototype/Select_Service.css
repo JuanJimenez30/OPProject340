@@ -1,70 +1,4 @@
-/* #info-box {
-    position: relative; 
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 40px 24px;
-    
-    border-radius: 10px;
-    background-color: rgb(170, 227, 180);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.service-block {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    
-    margin-top: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-    flex: 0 0 500px; 
-    height: 1400px; 
-    background-color: rgb(255, 255, 255);
-    position: relative; 
-   
-}
-.service-block h2 {
-    font-size: 40px;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-.service-block p {
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-indent: 3em;
-}
-
-.service-block h3 {
-    font-size: 25px;
-    margin-bottom: 15px;
-    margin-top: 5px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-.time-box {
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    align-items: center;
-    flex: 0 0 500px; 
-    height: 600px;
-    width: 300px; 
-    background-color: rgb(255, 255, 255);
-    position: relative; 
-} */
-
 #info-box {
-    /* background: 
-        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
-        url('/High-fidelity-prototype/images/lawncare-for_background_profilePage.jpeg') center/cover no-repeat; */
     border-radius: 18px;
     box-shadow: 0 6px 24px rgba(0,0,0,0.10);
     border: 2px solid #4CAF50;
@@ -87,18 +21,21 @@
     color: #388e3c;
     margin-bottom: 12px;
     letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .service-block p {
     font-size: 1.1rem;
     color: #444;
     margin-bottom: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .service-block h3 {
     font-size: 1.2rem;
     color: #2e7d32;
     margin-bottom: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .time-box {
@@ -106,17 +43,32 @@
     border-radius: 10px;
     padding: 18px 12px;
     box-shadow: 0 2px 8px rgba(76,175,80,0.08);
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 10px;
+    gap: 10px;
+}
+
+.radio-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 220px;           
+    justify-content: flex-start; 
+}
+
+input[type="radio"] {
+    accent-color: #4CAF50;
+    margin: 0;
+    vertical-align: middle;
 }
 
 .time-box label {
     font-size: 1.08rem;
     color: #333;
-    margin-left: 8px;
-}
-
-input[type="radio"] {
-    accent-color: #4CAF50;
-    margin-right: 6px;
+    margin: 0;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: left;
 }

@@ -30,7 +30,7 @@
 
         <div id="background-section">
         <div id="info-box">
-            <div class=service-block>
+            <div class="service-block">
                 <h2>Mowing</h2>
                 <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing
                     schedules to fit your needs.</p>
@@ -38,13 +38,24 @@
                 <h3>Select Available Service</h3>
                 
                 <div class="time-box">
-                    <input type="radio" id="one-time" name="service-type" value="one-time" >
-                    <label for="one-time">One-Time Service - $30</label><br>
-                    <input type="radio" id="weekly" name="service-type" value="weekly">
-                    <label for="weekly">Weekly Service - $25 per visit</label><br>
-                    <input type="radio" id="bi-weekly" name="service-type" value="bi-weekly">
-                    <label for="bi-weekly">Bi-Weekly Service - $28 per visit</label><br>
+                    <div class="radio-row">
+                        <input type="radio" id="one-time" name="service-type" value="one-time">
+                        <label for="one-time">One-Time Service - $30</label>
+                    </div>
+                    <div class="radio-row">
+                        <input type="radio" id="weekly" name="service-type" value="weekly">
+                        <label for="weekly">Weekly Service - $25 per visit</label>
+                    </div>
+                    <div class="radio-row">
+                        <input type="radio" id="bi-weekly" name="service-type" value="bi-weekly">
+                        <label for="bi-weekly">Bi-Weekly Service - $28 per visit</label>
+                    </div>
                 </div>
+                <!-- Add Cart Button -->
+                 <br>
+                <button id="add-cart-btn" onclick="location.href='ViewCartPage.html'" style="margin-top:22px;padding:12px 32px;font-size:1.1rem;background:#4CAF50;color:#fff;border:none;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(76,175,80,0.10);">
+                    Add to Cart
+                </button>
             </div>
         </div>
         </div>
