@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="Success.css">
     <title>Success</title>
 </head>
+
 <body>
-   <div id="header">
+    <div id="header">
         <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
         <div class="header-btn-group">
             <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
@@ -30,9 +33,23 @@
         </div>
         <hr>
     </div>
-    <button onclick="location.href='CustomerHome.html'">Return to Home</button>
-    <button onclick="location.href='/High-fidelity-prototype/Login.html'">Logout</button>
 
-    
+    <div class="success-background">
+        <div class="success-container">
+            <span class="success-icon">✔️</span>
+            <div class="success-title">Success!</div>
+            <div class="success-message">
+                Your transaction was completed successfully.<br>
+                Thank you for choosing Green Lawn Care!
+            </div>
+            <div class="success-actions">
+                <button class="success-btn" onclick="location.href='CustomerHome.html'">Return Home</button>
+                <button class="success-btn"
+                    onclick="location.href='/High-fidelity-prototype/Login.html'">Logout</button>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
