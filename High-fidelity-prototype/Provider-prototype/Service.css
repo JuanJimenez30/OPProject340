@@ -24,11 +24,6 @@
     padding: 40px 24px;
     margin-bottom: 20px;
     border-radius: 10px;
-    background-color: rgb(170, 227, 180);
-    background-image: url('/High-fidelity-prototype/images/Service-BG.jpg');
-      background-repeat: no-repeat;         /* Prevent repeating */
-                   /* Fill container, crop if needed */
-    background-position: center center; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
