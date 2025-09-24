@@ -3,10 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
+    <link rel="stylesheet" href="feedback.css">
+    <title>FeedBack</title>
 </head>
 <body>
-    <h1>FeedBack page</h1>
-    
+    <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <div id="home-container">
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='CustomerHome.html'" class="navButton">Home</button>
+            <button onclick="location.href='Services.html'" class="navButton">Services</button>
+            <button onclick="location.href='ViewCartPage.html'" class="navButton">View Cart</button>
+            <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
+        </div>
+        <hr>
+    </div>
+
+    <div id="background">
+    <div id="feedback-section">
+        <h2>Submit a Service Review</h2>
+        <form id="review-form">
+            <label for="service-name">Which service are you reviewing?</label>
+            <select id="service-name" name="service-name" required>
+                <option value="">Select a service</option>
+                <option value="Mowing">Mowing</option>
+                <option value="Weed Eating">Weed Eating</option>
+                <option value="Power Washing">Power Washing</option>
+                <option value="Pest Control">Pest Control</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="star-rating">Rate the service:</label>
+            <div id="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5" title="5 stars">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4" title="4 stars">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3" title="3 stars">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2" title="2 stars">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1" title="1 star">★</label>
+            </div>
+            <label for="review-desc">Describe the service:</label>
+            <textarea id="review-desc" name="review-desc" rows="4" required></textarea>
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+    <div class="button-group">
+        <button class="home-btn" onclick="location.href='CustomerHome.html'">Home</button>
+        <button class="logout-btn" onclick="location.href='LogIn.html'">Log Out</button>
+    </div>
+    </div>
+
+    <script>
+document.getElementById('review-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.reset();
+    this.innerHTML = '<p style="color:#388e3c;font-weight:600;font-size:1.2rem;">Thank you for your review!</p>';
+});
+</script>
 </body>
 </html>

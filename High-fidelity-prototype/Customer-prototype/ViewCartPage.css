@@ -16,7 +16,7 @@ body, button, input, label, h1, h2, h3, h4, h5, h6, p, div, span {
 }
 
 #cart-bg {
-    background: url('/High-fidelity-prototype/images/lawncare-for_background_profilePage.jpeg');
+    background: url('/High-fidelity-prototype/images/lawncare-for_background_profilePage.jpeg') no-repeat center center fixed;
     background-size: cover;
     background-position: center;
     padding: 10px;
