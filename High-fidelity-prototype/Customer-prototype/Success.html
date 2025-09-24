@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
     <title>Success</title>
 </head>
 <body>
-    <h1>Success</h1>
-    <p>Your order has been placed successfully!</p>
+   <div id="header">
+        <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <div id="home-container">
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='CustomerHome.html'" class="navButton">Home</button>
+            <button onclick="location.href='Services.html'" class="navButton">Services</button>
+            <button onclick="location.href='ViewCartPage.html'" class="navButton">View Cart</button>
+            <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
+        </div>
+        <hr>
+    </div>
     <button onclick="location.href='CustomerHome.html'">Return to Home</button>
+    <button onclick="location.href='/High-fidelity-prototype/Login.html'">Logout</button>
+
+    
 </body>
 </html>

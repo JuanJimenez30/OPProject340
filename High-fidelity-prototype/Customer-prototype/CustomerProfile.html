@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/High-fidelity-prototype/Home.css">
-    <link rel="stylesheet" href="CustmomerProfile.css">
+    <link rel="stylesheet" href="CustomerProfile.css">
     <title>View Profile Page</title>
 </head>
 
@@ -13,10 +13,16 @@
     <div id="header">
         <img src="/High-fidelity-prototype/images/Logo_Company.png" alt="Company Logo" id="company-logo">
 
-        <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
-            <span class="profile-icon">👤</span>
-            <span class="profile-text">Profile</span>
-        </button>
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/High-fidelity-prototype/Login.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
     </div>
     <div id="home-container">
         <hr>
