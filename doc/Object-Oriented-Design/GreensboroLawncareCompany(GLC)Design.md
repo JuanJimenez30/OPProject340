@@ -30,7 +30,7 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 
 ## 2. Use Cases
 ### 2.1 Use Case Model
-![Use Case Model](https://github.com/csc340-uncg/f25-team0/blob/main/doc/Object-Oriented-Design/use-case.png)
+![Use Case Model](https://github.com/JuanJimenez30/OPProject340/blob/main/doc/Object-Oriented-Design/Simple%20Use%20case%20diagram.png)
 
 ### 2.2 Use Case Descriptions
 
