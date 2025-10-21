@@ -34,17 +34,21 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 
 ### 2.2 Use Case Descriptions
 
-#### 2.2.1 Actor: Farmer
+#### 2.2.1 Actor: Provider
 ##### 2.2.1.1 Sign Up
-A farmer can sign up to create their profile with their name, email, password, and phone number. Emails must be unique.
+A provider can sign up to create their profile with their name, email, password, and phone number.
 ##### 2.2.1.2 Log In
-A farmer shall be able to sign in using their registred email and password. After logging in, the farmer shall be directed their dashboard where they see an overview of their farm, boxes and stats.
+A provider shall be able to sign in using their registred email and password. After logging in, the provider shall be directed their dashboard where they see an overview of their services.
 ##### 2.2.1.3 Update Profile
-A farmer shall be to modify their profile by going to their profile page. They can change their email, password, and farm.
-##### 2.2.1.4 Create Produce Boxes
-The farmer shall be able to create a new produce box listing. They would provide a box name, description, and price. This box will be created to be associated with only this farmer and their farm.
-##### 2.2.1.4 View Customer Stats
-A farmer will be able to view several statistics such as total revenue, total subscribers, and average ratings.
+A provider shall be to modify their profile by going to their profile page. They can change their email, username and passwrod.
+##### 2.2.1.4 Create/Delete Service
+The Provider shall be able to create a new service. They would provide a service name, description, and price. They can also delete any existing services.
+##### 2.2.1.5 View Customer Information
+A provider will be able to view customer profiles and information regarding their profiles.
+##### 2.2.1.6 Accept/Deny Service Request
+A provider will be able to accept or deny requests for services by the customer. If accepted, the service will be added to the customets cart and proceed to checkout.
+##### 2.2.1.7 Reply to Reviews
+A provider will be able to reply to reviews left by customers. The reply will then be posted to the reviews page to the corresponding review. 
 
 #### 2.2.2 Actor: Customer
 ##### 2.2.2.1 Sign Up
