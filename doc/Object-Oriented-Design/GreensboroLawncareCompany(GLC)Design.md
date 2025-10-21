@@ -12,21 +12,21 @@ Table of Contents
 * 2 [Use Cases](#2-use-cases)
   * 2.1 [Use Case Model](#21-use-case-model)
   * 2.2 [Use Case Descriptions](#22-use-case-descriptions)
-    * 2.2.1 [Actor: Farmer](#221-actor-farmer)
-    * 2.2.2 [Actor: Customer](#222-actor-customer) 
+    * 2.2.1 [Actor: Farmer](#221-actor-Provider)
+    * 2.2.2 [Actor: Customer](#222-actor-Customer) 
 * 3 [UML Class Diagram](#3-uml-class-diagram)
 * 4 [Database Schema](#4-database-schema)
 
 ## Revision History
 | Name | Date    | Reason For Changes  | Version   |
 | ---- | ------- | ------------------- | --------- |
-|  Al  |10/8     | Initial Design      |    1      |
+|  JJM/SA  |10/8     | Initial Design      |    1      |
 |      |         |                     |           |
 |      |         |                     |           |
 
 ## 1. Product Overview
-LocalHarvest Hub is a simple, comprehensive, easy to use web app with the goal of connecting consumers to locally grown produce. Farmers and customers make use of the centralized platform to meet their needs. 
-Farmers create and publish produce boxes, customers subscribe any available boxes that they are interested in, either as a one-off or recurring subscription.
+Greensboro Lawncare Company (GLC) is a simple, comprehensive, easy to use web app with the goal of giving potential customers lawncare services. Provider and customers make use of the centralized platform to meet their needs. 
+Provider create and publish services, customers book any available services that they are interested in, either as a one-off or recurring subscription.
 
 ## 2. Use Cases
 ### 2.1 Use Case Model
@@ -48,15 +48,17 @@ A farmer will be able to view several statistics such as total revenue, total su
 
 #### 2.2.2 Actor: Customer
 ##### 2.2.2.1 Sign Up
-A customer can sign up to create their profile with their name, email, password, and address. Emails must be unique.
+A customer can sign up to create their profile with their name, email, password, and address.
 ##### 2.2.2.2 Log In
-A customer shall be able to sign in using their registred email and password. After logging in, the customer shall be directed their dashboard where they see an overview of their subscriptions.
-##### 2.2.2.3 Browse Produce Boxes
-A customer shall be able to view available produce boxes. They can do this from the home page or using a search function. They can also filter boxes by name, descriptions, or farm. They will also be able to select one box and view more details.
-##### 2.2.1.4 Subscribe to Produce Box
-Upon selecting a box, a customer shall be able to subscribe for the box using a one-click action. This box will then appear on their dashboard, and they will be able to ammend the subscription.
-##### 2.2.1.5 Review Produce Box
-A customer may write a review for a box they subscribed to. They will be able to rate the box based on freshness and delivery.
+A customer shall be able to sign in using their registered email and password. After logging in, the customer shall be directed the home screen where tabs are present to either see services, view their cart and leave a feedback.
+##### 2.2.2.3 Browse services
+A customer shall be able to view available services. They can do this from the services tab. They will also be able to select one service and view more details.
+##### 2.2.1.4 Subscribe to service
+Upon selecting a service, a customer shall be able to subscribe to the service using a one-click action. The customer will be redirected to their cart and will be able to remove the service from their cart.
+##### 2.2.1.5 Review service
+A customer may write a review for a service they subscribed to or purchased. They will be able to rate the service based on quality.
+##### 2.2.1.6 Update profile
+A customer shall be able to modify their profile by going to their profile page. They can change their email, password, and address, phone number, and add a card on their profile.
 
 ## 3. UML Class Diagram
 ![UML Class Diagram](https://github.com/csc340-uncg/f25-team0/blob/main/doc/Object-Oriented-Design/class-diagram.png)
