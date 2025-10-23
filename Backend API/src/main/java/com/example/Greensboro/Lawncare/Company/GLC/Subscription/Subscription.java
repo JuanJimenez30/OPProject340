@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
 
 import com.example.Greensboro.Lawncare.Company.GLC.Customer.Customer;
-// import com.example.Greensboro.Lawncare.Company.GLC.Services.Services;
+import com.example.Greensboro.Lawncare.Company.GLC.Services.Services;
 
 @Data
 @NoArgsConstructor
@@ -24,10 +24,10 @@ public class Subscription {
     @JsonIgnoreProperties("subscriptions")
     private Customer customer;
 
-    // @ManyToOne
-    // @JoinColumn(name = "services_id", nullable = false)
-    // @JsonIgnoreProperties({"subscriptions", "reviews"})
-    // private Services services;
+    @ManyToOne
+    @JoinColumn(name = "services_id", nullable = false)
+    @JsonIgnoreProperties({"subscriptions", "reviews"})
+    private Services services;
 
     @NotNull
     @Enumerated(EnumType.STRING)
