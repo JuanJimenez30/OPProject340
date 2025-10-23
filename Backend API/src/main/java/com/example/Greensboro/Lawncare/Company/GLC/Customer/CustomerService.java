@@ -26,7 +26,7 @@ public class CustomerService {
 
         customer.setName(customerDetails.getName());
         customer.setEmail(customerDetails.getEmail());
-        customer.setShippingAddress(customerDetails.getShippingAddress());
+        customer.setAddress(customerDetails.getAddress());
         customer.setPhoneNumber(customerDetails.getPhoneNumber());
 
         return customerRepository.save(customer);
@@ -42,7 +42,7 @@ public class CustomerService {
     }
 
     public List<Customer> searchByAddress(String address) {
-        return customerRepository.findByShippingAddressContaining(address);
+        return customerRepository.findByAddressContaining(address);
     }
 
     public List<Customer> searchByPhoneNumber(String phoneNumber) {

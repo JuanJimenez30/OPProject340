@@ -25,6 +25,11 @@ public class SubscriptionController {
         return ResponseEntity.ok(subscriptionService.createSubscription(subscription));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Subscription> getSubscriptionById(@PathVariable Long id) {
+        return ResponseEntity.ok(subscriptionService.getSubscriptionById(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Subscription> updateSubscription(@PathVariable Long id, @Valid @RequestBody Subscription subscriptionDetails) {
         return ResponseEntity.ok(subscriptionService.updateSubscription(id, subscriptionDetails));
@@ -41,9 +46,9 @@ public class SubscriptionController {
         return ResponseEntity.ok(subscriptionService.getActiveSubscriptionsByCustomer(customerService.getCustomerById(customerId)));
     }
 
-    @GetMapping("/box/{boxId}")
-    public ResponseEntity<List<Subscription>> getBoxSubscriptions(@PathVariable Long boxId) {
-        return ResponseEntity.ok(subscriptionService.getSubscriptionsByServices(servicesService.getServiceById(boxId)));
+    @GetMapping("/services/{serviceId}")
+    public ResponseEntity<List<Subscription>> getServiceSubscriptions(@PathVariable Long serviceId) {
+        return ResponseEntity.ok(subscriptionService.getSubscriptionsByServices(servicesService.getServiceById(serviceId)));
     }
 
     @GetMapping("/provider/{providerId}")

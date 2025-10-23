@@ -33,6 +33,11 @@ public class SubscriptionService {
         return subscriptionRepository.save(subscription);
     }
 
+    public Subscription getSubscriptionById(Long id) {
+        return subscriptionRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Subscription not found"));
+    }
+
     public void cancelSubscription(Long id) {
         Subscription subscription = subscriptionRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Subscription not found"));
