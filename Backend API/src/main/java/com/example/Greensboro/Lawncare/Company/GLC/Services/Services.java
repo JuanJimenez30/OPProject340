@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.Greensboro.Lawncare.Company.GLC.Reviews.*;
-//import com.example.Greensboro.Lawncare.Company.GLC.subscription.subscription;
+import com.example.Greensboro.Lawncare.Company.GLC.Subscription.Subscription;
 
 @Data
 @NoArgsConstructor
@@ -39,9 +39,9 @@ public class Services {
     @NotNull
     private boolean available = true;
 
-    // @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
-    // @JsonIgnoreProperties("service")
-    // private List<Subscription> subscriptions = new ArrayList<>();
+     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+     @JsonIgnoreProperties("service")
+     private List<Subscription> subscriptions = new ArrayList<>();
 
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("service")
