@@ -29,6 +29,17 @@ public class ReviewsController {
         return ResponseEntity.ok(reviewService.createReview(review));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Reviews> getReviewById(@PathVariable Long id) {
+        Reviews review = reviewService.getReviewById(id);
+        return ResponseEntity.ok(review);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Reviews> updateReview(@PathVariable Long id, @Valid @RequestBody Reviews reviewDetails) {
+        return ResponseEntity.ok(reviewService.updateReview(id, reviewDetails));
+    }
+
     @PostMapping("/{id}/provider-response")
     public ResponseEntity<Reviews> addProviderResponse(@PathVariable Long id, @RequestBody String response) {
         return ResponseEntity.ok(reviewService.addProviderResponse(id, response));

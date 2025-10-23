@@ -42,9 +42,10 @@ public class Customer {
     @JsonIgnoreProperties("customer")
     private List<Subscription> subscriptions = new ArrayList<>();
 
-    // Shipping address, phone number, and card number
+    // Address field
     @NotBlank
-    private String shippingAddress;
+    @Column(name = "address", nullable = false)
+    private String address;
 
     private String phoneNumber;
 
