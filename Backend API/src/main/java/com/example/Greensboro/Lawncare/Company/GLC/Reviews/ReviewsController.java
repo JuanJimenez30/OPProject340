@@ -40,9 +40,9 @@ public class ReviewsController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/box/{boxId}")
-    public ResponseEntity<List<Reviews>> getBoxReviews(@PathVariable Long boxId) {
-        return ResponseEntity.ok(reviewService.getReviewsByServices(servicesService.getServiceById(boxId)));
+    @GetMapping("/service/{serviceId}")
+    public ResponseEntity<List<Reviews>> getServiceReviews(@PathVariable Long serviceId) {
+        return ResponseEntity.ok(reviewService.getReviewsByService(servicesService.getServiceById(serviceId)));
     }
 
     @GetMapping("/customer/{customerId}")
@@ -52,12 +52,12 @@ public class ReviewsController {
 
     @GetMapping("/provider/{providerId}")
     public ResponseEntity<List<Reviews>> getProviderReviews(@PathVariable Long providerId) {
-        return ResponseEntity.ok(reviewService.getReviewsByProvider(providerService.getProviderById(providerId)));
+        return ResponseEntity.ok(reviewService.getReviewsByServiceProvider(providerService.getProviderById(providerId)));
     }
 
     @GetMapping("/services/{servicesId}/ratings")
     public ResponseEntity<Map<String, Double>> getServicesRatings(@PathVariable Long servicesId) {
-        Services services = servicesService.getServicesById(servicesId);
+        Services services = servicesService.getServiceById(servicesId);
         Map<String, Double> ratings = new HashMap<>();
         ratings.put("overall", reviewService.getAverageOverallRating(services));
         return ResponseEntity.ok(ratings);
