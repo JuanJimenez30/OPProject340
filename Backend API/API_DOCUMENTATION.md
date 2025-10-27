@@ -1,4 +1,4 @@
-# LocalHarvest Hub API Documentation
+# Greensboro Lawncare Company (GLC) API Documentation
 
 ## Customer API Endpoints
 
@@ -11,7 +11,7 @@ Content-Type: application/json
     "name": "John Doe",
     "email": "john@example.com",
     "password": "securePassword123",
-    "shippingAddress": "123 Main St, City, State, 12345",
+    "address": "123 Main St, City, State, 12345",
     "phoneNumber": "555-555-5555"
 }
 ```
@@ -23,10 +23,10 @@ Content-Type: application/json
 
 {
     "name": "John Doe Updated",
-    "email": "john.updated@example.com",
+    "email": "john@example.com",
     "password": "securePassword123",
-    "shippingAddress": "456 Oak St, City, State, 12345",
-    "phoneNumber": "123-456-7890"
+    "address": "1667 Green View Dr, Los Angeles, CA",
+    "phoneNumber": "555-555-0132"
 }
 ```
 
