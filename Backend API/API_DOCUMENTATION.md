@@ -220,7 +220,7 @@ Content-Type: application/json
 
 ### Add Provider Response to Review
 ```http
-PUT /api/reviews/{id}/provider-response
+POST /api/reviews/{id}/provider-response
 Content-Type: application/json
 
 "let me support your dreams for your excellent review! We're so glad you were happy with our service."
