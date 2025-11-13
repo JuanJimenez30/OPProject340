@@ -1,0 +1,65 @@
+.success-container {
+    max-width: 480px;
+    margin: 60px auto;
+    background: linear-gradient(135deg, #e8f5e9 0%, #a5d6a7 100%);
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(76,175,80,0.13);
+    padding: 40px 32px;
+    text-align: center;
+    
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #4CAF50;
+    margin-bottom: 18px;
+    display: block;
+}
+
+.success-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #388e3c;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.success-message {
+    font-size: 1.15rem;
+    color: #333;
+    margin-bottom: 28px;
+}
+
+.success-actions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.success-btn {
+    background: linear-gradient(90deg, #4CAF50 60%, #388e3c 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(76,175,80,0.13);
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.2s;
+}
+.success-btn:hover {
+    background: linear-gradient(90deg, #388e3c 0%, #4CAF50 100%);
+    transform: scale(1.04);
+}
+
+.success-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a5d6a7;
+    background-size: cover;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/Home.css">
+    <title>Add Service Page</title>
+    <!-- Service.css: absolute path for server; relative fallback for local file open -->
+    <link rel="stylesheet" href="/Provider/Service.css">
+    <link rel="stylesheet" href="Service.css">
+</head>
+<body>
+    <div id="header">
+    <img src="/images2/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/LogIn.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='/Provider/PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <hr>
+     <div id="navigationMenu">
+    <button onclick="location.href='/Provider/Home.html'" class="navButton">Home</button>
+    <button onclick="location.href='/Provider/PServices.html'" class="navButton">Services</button>
+    <button onclick="location.href='/Provider/CustomerInfo.html'" class="navButton">Customer Info</button>
+    <button onclick="location.href='/Provider/Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr>
+        <div id="add-service-page">
+        <h1 class ="titles">Add Service</h1>
+    <div id="add-service-container">
+        
+            <label for="service-name">Service Name:</label>
+            <input type="text" id="service-name" name="service-name" required>
+
+            <label for="service-description">Service Description:</label>
+            <textarea id="service-description" name="service-description" required></textarea>
+
+            <label for="service-image">Upload Image (optional):</label>
+            <!-- image is optional; provider-services.js will handle absence -->
+            <input type="file" id="service-image" name="service-image" accept="image/*">
+
+            <label for="service-price">Service Price (USD):</label>
+            <!-- allow decimal currencies; enforce non-negative values -->
+            <input type="number" id="service-price" name="service-price" required min="0" step="0.01" placeholder="e.g. 29.99">
+   
+            <div class="form-actions">
+                <button type="button" id="add-service-btn">Add Service</button>
+                <button type="button" onclick="location.href='/Provider/PServices.html'">Back to Services</button>
+            </div>
+        
+        </div>
+        </div>
+
+    <script src="/Provider/provider-services.js"></script>
+
+</body>
+</html>

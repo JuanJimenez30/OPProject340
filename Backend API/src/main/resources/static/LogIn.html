@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Login.css">
+    <title>Log In</title>
+</head>
+<body>
+      
+    <div id="login-container">
+    <!-- <h1>Log In </h1> -->
+    <form id="loginForm" action="#" >
+        <h1>Log In </h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Log In</button>
+         <p>Don't have an account?</p>
+    <button type="button" onclick="location.href='/Customer/SignUp.html'">Sign Up</button>
+        </form>
+        <script>
+            // Client-only mock login handler — no server required.
+            (function(){
+                const form = document.getElementById('loginForm');
+                form.addEventListener('submit', function(e){
+                    e.preventDefault(); // stop normal navigation
+                    const fd = new FormData(form);
+                    const username = fd.get('username').trim();
+                    const password = fd.get('password').trim();
+
+                    // Simple mock rules (for prototype only)
+                    // Any non-empty username/password is accepted, but you can customize rules here.
+                    if(!username || !password){
+                        alert('Please enter both username and password.');
+                        return;
+                    }
+
+                                // Hard-coded credentials (prototype only) ------------------------------------------------
+                                // Provider account
+                                const provider = { username: 'provider', password: 'provider123' };
+                                // Customer account
+                                const customer = { username: 'customer', password: 'customer123' };
+
+                                    if(username === provider.username && password === provider.password){
+                                        sessionStorage.setItem('glc_logged_in', 'true');
+                                        sessionStorage.setItem('glc_user', username);
+                                        sessionStorage.setItem('glc_role', 'provider');
+                                        window.location.href = '/Provider/Home.html';
+                                        return;
+                                    }
+
+                                if(username === customer.username && password === customer.password){
+                                    sessionStorage.setItem('glc_logged_in', 'true');
+                                    sessionStorage.setItem('glc_user', username);
+                                    sessionStorage.setItem('glc_role', 'customer');
+                                        window.location.href = '/Customer/CustomerHome.html';
+                                    return;
+                                }
+
+                                // fallback
+                                alert('Invalid credentials. Try provider/provider123 or customer/customer123');
+                });
+            })();
+        </script>
+    </div>
+</body>
+</html>

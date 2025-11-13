@@ -26,6 +26,8 @@ public class ServicesService {
 
         service.setName(serviceDetails.getName());
         service.setDescription(serviceDetails.getDescription());
+    // persist image data if provided (may be null)
+    service.setImageData(serviceDetails.getImageData());
         service.setPrice(serviceDetails.getPrice());
         service.setAvailable(serviceDetails.isAvailable());
 

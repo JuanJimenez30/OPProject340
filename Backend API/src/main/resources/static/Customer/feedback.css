@@ -1,0 +1,150 @@
+/* Use a modern, friendly font for all text */
+body, button, input, label, h1, h2, h3, h4, h5, h6, p, div, span, textarea, select {
+    font-family: 'Montserrat', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}
+
+#feedback-section {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 36px 28px;
+    background: linear-gradient(135deg, #a5d6a7 0%, #e8f5e9 100%);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(76,175,80,0.13);
+}
+
+#feedback-section h2 {
+    text-align: center;
+    color: #000000; /* dark green, fully opaque */
+    font-size: 2.2rem;
+    margin-bottom: 22px;
+    margin-top: 0; /* Add this line or set to a smaller value */
+    font-family: 'Montserrat', 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+#review-form label {
+    display: block;
+    font-weight: 600;
+    color: #000000; /* solid green, fully opaque */
+    margin-bottom: 8px;
+    margin-top: 18px;
+    font-size: 1.12rem;
+    font-family: inherit;
+}
+
+#service-name, #review-desc {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #bdbdbd;
+    font-size: 1.05rem;
+    font-family: inherit;
+    background: #fff;
+    box-sizing: border-box;
+    transition: border 0.2s;
+}
+
+#service-name:focus, #review-desc:focus {
+    border: 1.5px solid #4CAF50;
+    outline: none;
+}
+
+#star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center; /* center the stars horizontally */
+    align-items: center;
+    margin-bottom: 22px;
+    gap: 4px;
+}
+
+#star-rating input[type="radio"] {
+    display: none;
+}
+
+#star-rating label {
+    font-size: 2.4rem;
+    color: #bdbdbd;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+    padding: 0 3px;
+}
+
+#star-rating input[type="radio"]:checked ~ label,
+#star-rating label:hover,
+#star-rating label:hover ~ label {
+    color: #FFD600;
+    transform: scale(1.15);
+    text-shadow: 0 2px 8px rgba(255,214,0,0.15);
+}
+
+#review-form textarea {
+    resize: vertical;
+    min-height: 90px;
+    max-height: 220px;
+    font-family: inherit;
+    font-size: 1.05rem;
+}
+
+#review-form button[type="submit"] {
+    background: linear-gradient(90deg, #4CAF50 60%, #388e3c 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 36px;
+    font-size: 1.15rem;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(76,175,80,0.13);
+    margin-top: 18px;
+    transition: background 0.2s, transform 0.2s;
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+#review-form button[type="submit"]:hover {
+    background: linear-gradient(90deg, #388e3c 0%, #4CAF50 100%);
+    transform: scale(1.04);
+}
+
+/* Add to your feedback.css or main CSS file for consistent button styling */
+.home-btn, .logout-btn {
+    background: linear-gradient(90deg, #4CAF50 60%, #388e3c 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(76,175,80,0.13);
+    margin: 0; /* Remove side margins for flex gap */
+    font-family: 'Montserrat', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.2s;
+    outline: none;
+}
+
+.home-btn:hover, .logout-btn:hover {
+    background: linear-gradient(90deg, #388e3c 0%, #4CAF50 100%);
+    transform: scale(1.04);
+}
+
+/* Center the button group container */
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 24px 0;
+}
+
+#background {
+    background: url('/High-fidelity-prototype/images2/FeedbackBackGround.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 40px 0;
+    border-radius: 20px;
+}
