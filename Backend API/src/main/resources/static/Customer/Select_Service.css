@@ -1,0 +1,74 @@
+#info-box {
+    border-radius: 18px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+    border: 2px solid #4CAF50;
+    max-width: 600px;
+    margin: 32px auto;
+    padding: 32px 28px;
+    text-align: center;
+    background: #f7fff7;
+}
+
+#background-section{
+    background: url('/images2/lawncare-for_background_profilePage.jpeg') no-repeat center center fixed;
+        background-size: cover;
+        background-position: center;
+        padding: 10px;
+}
+
+.service-block h2 {
+    font-size: 2rem;
+    color: #388e3c;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.service-block p {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 22px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.service-block h3 {
+    font-size: 1.2rem;
+    color: #2e7d32;
+    margin-bottom: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.time-box {
+    background: #f7fff7;
+    border-radius: 10px;
+    padding: 18px 12px;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.radio-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 220px;           
+    justify-content: flex-start; 
+}
+
+input[type="radio"] {
+    accent-color: #4CAF50;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.time-box label {
+    font-size: 1.08rem;
+    color: #333;
+    margin: 0;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: left;
+}

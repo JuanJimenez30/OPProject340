@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/SignUp.css">
+    <title>Sign Up</title>
+</head>
+<body>
+      
+    <div id="signup-container">
+    <form id="signupForm" action="#" >
+        <h1>Sign Up</h1>
+        <label for="username">Enter Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="Name">Enter Name</label>
+        <input type="text" id="Name" name="Name" required><br><br>
+        <label for="phonenumber">Enter PhoneNumber</label>
+        <input type="text" id="phonenumber" name="phonenumber" required><br><br>
+        <label for="email">Enter Email</label>
+        <input type="text" id="email" name="email" required><br><br>
+        <label for="address">Enter Address</label>
+        <input type="text" id="address" name="address" required><br><br>
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="Confirm_password">Confirm Password</label>
+        <input type="password" id="Confirm_password" name="Confirm_password" required><br><br>
+        <button type="submit">Sign-Up</button>
+        <p>Already have an account?</p>
+  <button type="button" onclick="location.href='/LogIn.html'">Log In</button>
+    </form>
+    </div>
+
+    <script>
+    (function(){
+      const form = document.getElementById('signupForm');
+      const pw = document.getElementById('password');
+      const cpw = document.getElementById('Confirm_password');
+
+      form.addEventListener('submit', function(e){
+        if (pw.value !== cpw.value) {
+          e.preventDefault();
+          alert('Passwords do not match. Please correct them before signing up.');
+          cpw.focus();
+          return;
+        }
+        e.preventDefault(); 
+        window.location.href = 'CustomerHome.html';
+      });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Home.css">
+    <link rel="stylesheet" href="/Provider/Reviews.css">
+    <link rel="stylesheet" href="/Customer/CustomerProfile.css">
+    <title>Customer Reviews</title>
+</head>
+
+<body>
+    <div id="reviews-page">
+       <div id="header">
+    <img src="/images2/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/LogIn.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='Home.html'" class="navButton">Home</button>
+            <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+            <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+            <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr>
+        <div id="reviewsPageContainer">
+            <div id="reviews">
+                <h1>Customer Reviews</h1>
+                <div class="review-row">
+                    <div class="review">
+                        <img src="/images2/default_profile.jpg" alt="Default profile"
+                            id="default-profile">
+                        <h2>John Doe</h2>
+                        <p id="stars">⭐⭐⭐⭐⭐</p>
+                        <h3>Service: Pest Control</h3>
+                        <h3>Date Created: 2025-09-24</h3>
+                        <p id="review-text">I couldn’t be happier with the pest control service from Greensboro LawnCare
+                            Company. For months
+                            I struggled with ants and other bugs around my yard, and nothing I tried seemed to work.
+                            After one
+                            visit from their team, I noticed a huge difference. They were professional, explained
+                            everything
+                            clearly, and used treatments that were safe for my pets and plants.
+                        </p>
+                        <button class="reply-button">Reply</button>
+                    </div>
+                    <div class="review">
+                        <img src="/images2/default_profile.jpg" alt="Default profile"
+                            id="default-profile">
+                        <h2>Jane Smith</h2>
+                        <p id="stars">⭐⭐⭐⭐</p>
+                        <h3>Service: Powerwashing</h3>
+                        <h3>Date Created: 2025-09-24</h3>
+                        <p id="review-text">
+                            I hired Greensboro LawnCare Company for power washing my driveway and back patio, and the
+                            results were impressive. Years of dirt and stains came right off, and everything looks so
+                            much brighter. The team was on time, friendly, and worked quickly. The only reason I’m
+                            giving 4 stars instead of 5 is because a couple of small spots needed an extra rinse, but
+                            overall I’m very satisfied and would recommend their service.
+                        </p>
+                        <button class="reply-button">Reply</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+// Inline prototype behavior: replace Reply button with a textarea + submit/cancel
+document.addEventListener('click', function (e) {
+    // open reply form when clicking Reply
+    if (e.target && e.target.classList && e.target.classList.contains('reply-button')) {
+        const btn = e.target;
+        const review = btn.closest('.review');
+        if (!review) return;
+
+        // prevent multiple forms
+        if (review.querySelector('.reply-form')) return;
+
+        // create form
+        const form = document.createElement('div');
+        form.className = 'reply-form';
+
+        const textarea = document.createElement('textarea');
+        textarea.className = 'reply-textarea';
+        textarea.placeholder = 'Type your reply here...';
+
+        const submit = document.createElement('button');
+        submit.className = 'reply-submit';
+        submit.textContent = 'Reply';
+
+        const cancel = document.createElement('button');
+        cancel.className = 'reply-cancel';
+        cancel.textContent = 'Cancel';
+
+        form.appendChild(textarea);
+        const controls = document.createElement('div');
+        controls.className = 'reply-controls';
+        controls.appendChild(submit);
+        controls.appendChild(cancel);
+        form.appendChild(controls);
+
+        // replace button with form
+        btn.style.display = 'none';
+        btn.insertAdjacentElement('afterend', form);
+
+        // handle submit
+        submit.addEventListener('click', function () {
+            const text = textarea.value.trim();
+            if (!text) return; // don't add empty replies
+
+            const replyDiv = document.createElement('div');
+            replyDiv.className = 'reply';
+            replyDiv.textContent = text;
+
+            form.insertAdjacentElement('afterend', replyDiv);
+
+            // remove form and show button again
+            form.remove();
+            btn.style.display = '';
+        });
+
+        // handle cancel
+        cancel.addEventListener('click', function () {
+            form.remove();
+            btn.style.display = '';
+        });
+    }
+});
+</script>

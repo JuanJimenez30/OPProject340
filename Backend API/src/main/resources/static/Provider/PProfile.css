@@ -1,0 +1,49 @@
+#provider-profile {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 5px solid #0000004f;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+#provider-profile h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#provider-profile p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+#provider-profile button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #0028f0;
+    color: white;
+    border: 2px solid #554aed;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#provider-profile button:hover {
+    background-color: #5bc4f0;
+    color: white;
+} 
+#Pprofile-picture {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-top: 15px;
+    border: 5px solid #4caf50;
+    box-shadow: 0 0 2px 4px rgba(0, 0, 0, 0.10);
+    border-radius: 100px;
+}  
+/* rgb(16, 186, 81) */
+#profile-page-container {
+    background-image: url(/images2/lawncare-for_background_profilePage.jpeg);
+  background-size: cover;
+  background-position: center;
+    padding: 20px;
+}

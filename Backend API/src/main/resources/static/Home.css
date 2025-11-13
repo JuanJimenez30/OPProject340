@@ -1,0 +1,115 @@
+#home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
+}
+#company-logo {
+    width: 450px;
+    height: 400px;
+    margin-bottom: 20px;
+    align-self: center;
+    border: 5px solid black; 
+    border-radius: 300px;
+}
+#navigationMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin: 20px;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+.navButton {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 30px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.navButton:hover {
+    background-color: rgb(112, 244, 126);
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+}
+#home-photo {
+    width: 600px;
+    height: 550px;
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+   
+}
+#welcome-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+#welcome-text {
+    padding: 45px;
+    margin: 10px;
+    border: 5px solid black;
+    border-radius: 30px;
+    background-color: whitesmoke; 
+}
+#welcome-text h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+#welcome-text p {
+    font-size: 26px;
+}
+    hr {
+        border: 2px solid black;
+        margin: 0px 0;
+    }
+    #header {
+        position: relative;
+    background-image: url('./images2/CutLawnHome.jpg');
+        background-size: cover;
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 48px;
+    }
+   
+    .header-btn-group {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px; /* space between buttons */
+    }
+
+    #profile-btn, #logout-btn {
+        background: rgba(0,0,0,0.6);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 20px;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 16px;
+        cursor: pointer;
+        position: static; /* remove absolute positioning from buttons */
+    }
+
+    #profile-btn:hover, #logout-btn:hover {
+        background: rgba(255,255,255,0.9);
+        color: black;
+    }
+
+    .profile-icon, .logout-icon { font-size: 30px; }

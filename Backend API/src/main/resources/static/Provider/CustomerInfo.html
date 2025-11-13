@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Home.css">
+    <link rel="stylesheet" href="/Provider/CustomerInfo.css">
+    <title>Customer Information</title>
+</head>
+<body>
+    <div id = "customer-info-page">
+        <div id="header">
+    <img src="/images2/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/LogIn.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+     <hr>
+         <div id="navigationMenu">
+        <button onclick="location.href='Home.html'" class="navButton">Home</button>
+        <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+        <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+        <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr>
+        <div id="customer-info-box1">
+    <div id="customer-info">
+        <h1>Current Customers</h1>
+        <ul>
+            <li>Customer 1: John Doe <a href="/Provider/CustomerInfoPreview.html">: View Details</a></li>
+            <li>Customer 2: Jane Smith <a href="/Provider/CustomerInfoPreview.html">: View Details</a></li>
+            <li>Customer 3: Bob Johnson <a href="/Provider/CustomerInfoPreview.html">: View Details</a></li>
+        </ul>
+    </div>
+        </div>
+
+        </div>
+</body>
+</html>

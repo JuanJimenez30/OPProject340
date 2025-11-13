@@ -1,0 +1,137 @@
+#reviews {
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    background-color: #fbfbfb;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    color: #1f2937; /* neutral dark */
+}
+.review {
+    margin: 10px 0;
+    padding: 18px;
+    box-sizing: border-box;
+    max-width: 48%;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(16, 24, 40, 0.04);
+}
+/* Author / reviewer name */
+.review h2 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #0b3954; /* deep blue for emphasis */
+    letter-spacing: 0.2px;
+}
+#review-text {
+    margin: 12px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #111827;
+    background-color: rgb(248, 247, 246);
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 16px;
+    text-indent: 0; /* prefer standard paragraph spacing */
+}
+.reply-button {
+    background-color: #2f855a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: auto;
+    display: inline-block;
+    margin: 16px auto 0 auto; /* center horizontally */
+}
+.reply-button:hover {
+    background-color: #8df295;
+}
+/* Inline reply form styles */
+.reply-form {
+    margin-top: 12px;
+}
+.reply-textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.reply-controls {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+}
+.reply-submit, .reply-cancel {
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.reply-submit {
+    background-color: #62bc6a;
+    color: white;
+    border: 2px solid #005a12;
+}
+.reply-cancel {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+.reply {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f6fffa;
+    border-left: 4px solid #34d399;
+    border-radius: 6px;
+    color: #064e3b;
+    font-size: 14px;
+    line-height: 1.5;
+}
+#reviewsPageContainer {
+    margin: 20px auto 40px auto;
+    background-color: #ffffff; 
+    border-radius: 10px;
+}
+#stars {
+    font-size: 35px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    color: #ffcc00; /* Gold color for stars */
+    margin: 10px 0;
+    text-align: center;
+}
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    font-weight: 700;
+    color: #064e3b; /* green accent */
+    text-align: center;
+    letter-spacing: 0.4px;
+}
+h3 {
+    font-size: 14px;
+    margin: 6px 0 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    text-align: center;
+    font-weight: 500;
+    color: #6b7280;
+    font-style: italic;
+}
+  
+.review-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; 
+    flex-wrap: wrap;    
+    width: 100%;
+}

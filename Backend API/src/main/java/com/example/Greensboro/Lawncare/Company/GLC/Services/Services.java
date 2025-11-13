@@ -33,6 +33,12 @@ public class Services {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    // Optional base64-encoded image data (data URL). Stored as TEXT to
+    // allow large payloads. For production it's better to store files and
+    // persist URLs instead of base64 in the DB.
+    @Column(columnDefinition = "TEXT")
+    private String imageData;
+
     @NotNull
     @Positive
     private BigDecimal price;
