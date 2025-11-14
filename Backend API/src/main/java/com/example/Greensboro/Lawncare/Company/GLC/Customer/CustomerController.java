@@ -48,4 +48,23 @@ public class CustomerController {
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
     }
+
+    // POST /api/customers/login  - simple authentication endpoint for static frontend
+    @PostMapping("/login")
+    public ResponseEntity<Customer> login(@RequestBody LoginRequest req) {
+        // login using username (mapped to Customer.name)
+        Customer authenticated = customerService.authenticateByUsername(req.getUsername(), req.getPassword());
+        return ResponseEntity.ok(authenticated);
+    }
+
+    // small DTO for login JSON (username + password)
+    public static class LoginRequest {
+        private String username;
+        private String password;
+
+        public String getUsername() { return username; }
+        public void setUsername(String username) { this.username = username; }
+        public String getPassword() { return password; }
+        public void setPassword(String password) { this.password = password; }
+    }
 }

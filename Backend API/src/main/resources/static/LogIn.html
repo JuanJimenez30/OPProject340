@@ -21,46 +21,49 @@
     <button type="button" onclick="location.href='/Customer/SignUp.html'">Sign Up</button>
         </form>
         <script>
-            // Client-only mock login handler — no server required.
+            // Login handler: attempt server-side customer login, fallback to provider prototype
             (function(){
                 const form = document.getElementById('loginForm');
-                form.addEventListener('submit', function(e){
-                    e.preventDefault(); // stop normal navigation
+                form.addEventListener('submit', async function(e){
+                    e.preventDefault();
                     const fd = new FormData(form);
                     const username = fd.get('username').trim();
                     const password = fd.get('password').trim();
+                    if(!username || !password){ alert('Please enter both username and password.'); return; }
 
-                    // Simple mock rules (for prototype only)
-                    // Any non-empty username/password is accepted, but you can customize rules here.
-                    if(!username || !password){
-                        alert('Please enter both username and password.');
+                    // First try customer login (server-side)
+                    try{
+                        const res = await fetch('/api/customers/login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ username: username, password: password })
+                        });
+                        if(res.ok){
+                            const customer = await res.json();
+                            // store id for later client flows
+                            try{ localStorage.setItem('customerId', String(customer.id)); }catch(e){}
+                            sessionStorage.setItem('glc_logged_in', 'true');
+                            sessionStorage.setItem('glc_user', customer.name || customer.email || username);
+                            sessionStorage.setItem('glc_role', 'customer');
+                            window.location.href = '/Customer/CustomerHome.html';
+                            return;
+                        }
+                        // otherwise fall through to provider mock handling below
+                    }catch(err){
+                        console.warn('Customer login request failed, falling back to prototype provider check', err);
+                    }
+
+                    // Provider prototype (there is no provider auth endpoint in backend yet)
+                    const provider = { username: 'provider', password: 'provider123' };
+                    if(username === provider.username && password === provider.password){
+                        sessionStorage.setItem('glc_logged_in', 'true');
+                        sessionStorage.setItem('glc_user', username);
+                        sessionStorage.setItem('glc_role', 'provider');
+                        window.location.href = '/Provider/Home.html';
                         return;
                     }
 
-                                // Hard-coded credentials (prototype only) ------------------------------------------------
-                                // Provider account
-                                const provider = { username: 'provider', password: 'provider123' };
-                                // Customer account
-                                const customer = { username: 'customer', password: 'customer123' };
-
-                                    if(username === provider.username && password === provider.password){
-                                        sessionStorage.setItem('glc_logged_in', 'true');
-                                        sessionStorage.setItem('glc_user', username);
-                                        sessionStorage.setItem('glc_role', 'provider');
-                                        window.location.href = '/Provider/Home.html';
-                                        return;
-                                    }
-
-                                if(username === customer.username && password === customer.password){
-                                    sessionStorage.setItem('glc_logged_in', 'true');
-                                    sessionStorage.setItem('glc_user', username);
-                                    sessionStorage.setItem('glc_role', 'customer');
-                                        window.location.href = '/Customer/CustomerHome.html';
-                                    return;
-                                }
-
-                                // fallback
-                                alert('Invalid credentials. Try provider/provider123 or customer/customer123');
+                    alert('Invalid credentials. If you are a customer, ensure your email and password match the database.');
                 });
             })();
         </script>
