@@ -52,4 +52,20 @@ public class ProviderService {
         }
         return provider;
     }
+
+    /**
+     * Authenticate by username (either email or provider name) or email.
+     */
+    public Provider authenticateByUsername(String username, String password) {
+        // try email first
+        var opt = providerRepository.findByEmail(username);
+        if (opt.isEmpty()) {
+            opt = providerRepository.findByName(username);
+        }
+        Provider provider = opt.orElseThrow(() -> new IllegalArgumentException("Invalid username or password"));
+        if (!provider.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Invalid username or password");
+        }
+        return provider;
+    }
 }

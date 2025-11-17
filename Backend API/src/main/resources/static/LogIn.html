@@ -21,46 +21,63 @@
     <button type="button" onclick="location.href='/Customer/SignUp.html'">Sign Up</button>
         </form>
         <script>
-            // Client-only mock login handler — no server required.
+            // Login handler — attempts server-side provider authentication, falls back to simple customer mock
             (function(){
                 const form = document.getElementById('loginForm');
-                form.addEventListener('submit', function(e){
-                    e.preventDefault(); // stop normal navigation
+                form.addEventListener('submit', async function(e){
+                    e.preventDefault();
                     const fd = new FormData(form);
-                    const username = fd.get('username').trim();
-                    const password = fd.get('password').trim();
+                    const username = (fd.get('username') || '').trim();
+                    const password = (fd.get('password') || '').trim();
 
-                    // Simple mock rules (for prototype only)
-                    // Any non-empty username/password is accepted, but you can customize rules here.
                     if(!username || !password){
-                        alert('Please enter both username and password.');
+                        alert('Please enter both username (email) and password.');
                         return;
                     }
 
-                                // Hard-coded credentials (prototype only) ------------------------------------------------
-                                // Provider account
-                                const provider = { username: 'provider', password: 'provider123' };
-                                // Customer account
-                                const customer = { username: 'customer', password: 'customer123' };
+                    // Keep the simple in-page customer mock for demo customers
+                    if(username === 'customer' && password === 'customer123'){
+                        sessionStorage.setItem('glc_logged_in', 'true');
+                        sessionStorage.setItem('glc_user', username);
+                        sessionStorage.setItem('glc_role', 'customer');
+                        window.location.href = '/Customer/CustomerHome.html';
+                        return;
+                    }
 
-                                    if(username === provider.username && password === provider.password){
-                                        sessionStorage.setItem('glc_logged_in', 'true');
-                                        sessionStorage.setItem('glc_user', username);
-                                        sessionStorage.setItem('glc_role', 'provider');
-                                        window.location.href = '/Provider/Home.html';
-                                        return;
-                                    }
+                    // Otherwise attempt provider authentication against the backend
+                    try{
+                        const res = await fetch('/api/providers/authenticate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ username: username, password: password })
+                        });
 
-                                if(username === customer.username && password === customer.password){
-                                    sessionStorage.setItem('glc_logged_in', 'true');
-                                    sessionStorage.setItem('glc_user', username);
-                                    sessionStorage.setItem('glc_role', 'customer');
-                                        window.location.href = '/Customer/CustomerHome.html';
-                                    return;
-                                }
-
-                                // fallback
-                                alert('Invalid credentials. Try provider/provider123 or customer/customer123');
+                        if(res.ok){
+                            const provider = await res.json();
+                            // store minimal session info in sessionStorage for the frontend
+                            sessionStorage.setItem('glc_logged_in', 'true');
+                            sessionStorage.setItem('glc_user', provider.email || provider.name || username);
+                            sessionStorage.setItem('glc_role', 'provider');
+                            // optional: store provider id
+                            if(provider.id) sessionStorage.setItem('glc_provider_id', String(provider.id));
+                            window.location.href = '/Provider/Home.html';
+                            return;
+                        } else if (res.status === 401) {
+                            alert('Invalid provider credentials.');
+                            return;
+                        } else if (res.status === 400) {
+                            alert('Bad request to authentication endpoint.');
+                            return;
+                        } else {
+                            const txt = await res.text().catch(()=>'');
+                            console.error('Auth error', res.status, txt);
+                            alert('Authentication failed — see console for details.');
+                            return;
+                        }
+                    }catch(err){
+                        console.error('Network error during authentication', err);
+                        alert('Network error — unable to contact authentication server.');
+                    }
                 });
             })();
         </script>

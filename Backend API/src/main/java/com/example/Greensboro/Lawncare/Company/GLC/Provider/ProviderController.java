@@ -28,4 +28,27 @@ public class ProviderController {
         return ResponseEntity.ok(providerService.getProviderById(id));
     }
 
+    // Authentication endpoint for provider login (demo only — plaintext passwords)
+    @PostMapping("/authenticate")
+    public ResponseEntity<Provider> authenticate(@RequestBody java.util.Map<String, String> creds) {
+        // Accept either { "username": "...", "password": "..." } or { "email": "...", "password": "..." }
+        String username = creds.get("username");
+        String email = creds.get("email");
+        String password = creds.get("password");
+        if ((username == null && email == null) || password == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        try {
+            Provider p;
+            if (username != null) {
+                p = providerService.authenticateByUsername(username, password);
+            } else {
+                p = providerService.authenticate(email, password);
+            }
+            return ResponseEntity.ok(p);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(401).build();
+        }
+    }
+
 }
