@@ -38,43 +38,11 @@
     <div id="cart-bg">
         <h1 class="cart">Cart</h1>
         <div id="cart-container">
-            <div class="cart-item" data-price="30">
-                <h2>Mowing Service</h2>
-                <p>One-Time Service - $30</p>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="cart-item" data-price="50">
-                <h2>Pest Control</h2>
-                <p>Weekly Service - $50</p>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="cart-summary">
-                <h2>Total:</h2>
-                <span id="cart-total">$80</span>
-                <br>
-                <button id="checkout-btn" onclick="location.href='Success.html'">Checkout</button>
-            </div>
+            <!-- cart items will be loaded dynamically by /Customer/customer-cart.js -->
         </div>
     </div>
 
-    <script>
-        function updateTotal() {
-            let total = 0;
-            document.querySelectorAll('.cart-item').forEach(item => {
-                total += Number(item.getAttribute('data-price'));
-            });
-            document.getElementById('cart-total').textContent = '$' + total;
-        }
-
-        document.querySelectorAll('.remove-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                this.closest('.cart-item').remove();
-                updateTotal();
-            });
-        });
-
-        updateTotal();
-    </script>
+    <script src="/Customer/customer-cart.js"></script>
 </body>
 
 </html>

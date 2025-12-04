@@ -31,21 +31,22 @@
     </form>
     </div>
 
+    <script src="/Customer/customer-account.js"></script>
     <script>
     (function(){
       const form = document.getElementById('signupForm');
       const pw = document.getElementById('password');
       const cpw = document.getElementById('Confirm_password');
 
-      form.addEventListener('submit', function(e){
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
         if (pw.value !== cpw.value) {
-          e.preventDefault();
           alert('Passwords do not match. Please correct them before signing up.');
           cpw.focus();
           return;
         }
-        e.preventDefault(); 
-        window.location.href = 'CustomerHome.html';
+        // call signup handler
+        await signupCustomer(form);
       });
     })();
     </script>

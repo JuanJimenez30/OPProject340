@@ -20,7 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const API_BASE = window.location.origin || 'http://localhost:8080';
-    const DEFAULT_CUSTOMER_ID = 1; // change to a valid customer id in your DB
+
+    function getCurrentCustomerId() {
+        const v = localStorage.getItem('customerId');
+        if (!v) return null;
+        const n = Number(v);
+        return Number.isFinite(n) && n > 0 ? n : null;
+    }
 
     async function safeReadBodyAsString(response) {
         try {
@@ -106,9 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // reviewer name
             const name = document.createElement('h2');
-            const fullName = (r.customer && (r.customer.firstName || r.customer.lastName))
-                ? `${(r.customer.firstName||'').trim()} ${(r.customer.lastName||'').trim()}`.trim()
-                : 'Anonymous';
+            // Prefer stored customer.name (username); fall back to firstName/lastName, then email, then Anonymous
+            let fullName = 'Anonymous';
+            if (r.customer) {
+                if (r.customer.name && r.customer.name.trim()) fullName = r.customer.name.trim();
+                else if (r.customer.firstName || r.customer.lastName) fullName = `${(r.customer.firstName||'').trim()} ${(r.customer.lastName||'').trim()}`.trim();
+                else if (r.customer.email) fullName = r.customer.email;
+            }
             name.textContent = fullName;
 
             // stars
@@ -162,8 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!rating) { alert('Please select a rating.'); return; }
 
         const numericId = Number(serviceValue);
+        const currentCustomerId = getCurrentCustomerId();
+        if (!currentCustomerId) {
+            alert('You must be logged in to submit a review. Please log in or sign up.');
+            return;
+        }
+
         const payload = {
-            customer: { id: DEFAULT_CUSTOMER_ID },
+            customer: { id: currentCustomerId },
             services: { id: numericId },
             overallRating: Number(rating),
             comment
@@ -199,10 +215,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.id = 'default-profile';
 
                 const name = document.createElement('h2');
-                const fullName = (created.customer && (created.customer.firstName || created.customer.lastName))
-                    ? `${(created.customer.firstName||'').trim()} ${(created.customer.lastName||'').trim()}`.trim()
-                    : 'Anonymous';
-                name.textContent = fullName;
+                // Use created.customer.name when available, otherwise first/last/email then Anonymous
+                let createdName = 'Anonymous';
+                if (created.customer) {
+                    if (created.customer.name && created.customer.name.trim()) createdName = created.customer.name.trim();
+                    else if (created.customer.firstName || created.customer.lastName) createdName = `${(created.customer.firstName||'').trim()} ${(created.customer.lastName||'').trim()}`.trim();
+                    else if (created.customer.email) createdName = created.customer.email;
+                }
+                name.textContent = createdName;
 
                 const stars = document.createElement('p');
                 stars.id = 'stars';
