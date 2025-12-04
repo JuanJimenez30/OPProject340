@@ -31,9 +31,9 @@ public class Provider {
     @Column(nullable = false)
     private String password;
 
-    @OneToOne(mappedBy = "provider", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "provider", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("provider")
-    private Services services;
+    private java.util.List<Services> services = new java.util.ArrayList<>();
 
     private String phoneNumber;
 

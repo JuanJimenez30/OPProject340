@@ -1,5 +1,6 @@
 package com.example.Greensboro.Lawncare.Company.GLC.Services;
 
+import com.example.Greensboro.Lawncare.Company.GLC.Provider.ProviderRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,18 +20,18 @@ public class ServicesService {
     private final ServicesRepository servicesRepository;
     private final ProviderRepository providerRepository;
 
+    /**
+     * Create a service. If the client did not supply a provider, automatically
+     * attach provider id 1 (hardcoded) when that provider exists in the DB.
+     * This is a simple server-side convenience to avoid requiring the client
+     * to always include provider information.
+     */
     public Services createService(Services service) {
-        // If a provider id was sent in the request, resolve it to a managed entity
-        if (service.getProvider() != null && service.getProvider().getId() != null) {
-            Long providerId = service.getProvider().getId();
-            Provider provider = providerRepository.findById(providerId)
-                    .orElseThrow(() -> new EntityNotFoundException("Provider not found with id: " + providerId));
-            service.setProvider(provider);
-        } else {
-            // If no provider supplied, ensure provider is null to avoid transient object issues
-            service.setProvider(null);
+        if (service.getProvider() == null) {
+            // hardcoded provider id (change to desired id if needed)
+            final Long fallbackProviderId = 1L;
+            providerRepository.findById(fallbackProviderId).ifPresent(service::setProvider);
         }
-
         return servicesRepository.save(service);
     }
 

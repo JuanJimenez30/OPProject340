@@ -6,13 +6,13 @@ import com.example.Greensboro.Lawncare.Company.GLC.Services.Services;
 import com.example.Greensboro.Lawncare.Company.GLC.Services.ServicesService;
 
 import jakarta.validation.Valid;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.security.Provider.Service;
 import java.util.HashMap;
 
 @RestController
@@ -63,7 +63,11 @@ public class ReviewsController {
 
     @GetMapping("/provider/{providerId}")
     public ResponseEntity<List<Reviews>> getProviderReviews(@PathVariable Long providerId) {
-        return ResponseEntity.ok(reviewService.getReviewsByServiceProvider(providerService.getProviderById(providerId)));
+        try {
+            return ResponseEntity.ok(reviewService.getReviewsByServiceProvider(providerService.getProviderById(providerId)));
+        } catch (EntityNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("/services/{servicesId}/ratings")

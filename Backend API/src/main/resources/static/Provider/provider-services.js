@@ -1,18 +1,13 @@
-// Client helpers for Provider pages (AddService, PServices, Modify)
-// - read form inputs and send a new service to the backend (Add)
-// - fetch and render the list of services (List)
-// The code uses fetch() for HTTP requests and simple DOM operations to
-// build service cards. Image files are converted to base64 data URLs so
-// they can be sent inside JSON payloads.
+// Provider services helper
+// - Add a service (with optional image)
+// - List services and delete a service
+// Uses fetch() for API calls. Images are converted to base64 data URLs.
 
 // Base URL for the backend services API. Using a relative path keeps
 // requests same-origin when pages are served by the Spring Boot server.
 const API_BASE = '/api/services';
 
-// fileToDataUrl(file)
-// Convert a browser File object (from a file input) into a base64 data URL.
-// Returns a Promise that resolves to the data URL string or null when no
-// file was provided. Callers can await this to get the encoded image.
+// Convert a File to a base64 data URL (or null if no file).
 function fileToDataUrl(file){
     return new Promise((resolve, reject)=>{
         // If no file given, resolve to null so callers can handle absence.
@@ -24,10 +19,8 @@ function fileToDataUrl(file){
     });
 }
 
-// resizeImageFile(file, maxWidth, maxHeight, quality)
-// Loads an image file into a hidden canvas, scales it down while keeping
-// its aspect ratio, and returns a compressed JPEG data URL. This reduces
-// payload size and the chance of exceeding browser storage limits.
+// Resize and compress an image file to a JPEG data URL. Returns null if
+// file is missing. Useful to reduce upload size.
 function resizeImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.8){
     return new Promise((resolve, reject) => {
         if(!file) return resolve(null);
@@ -71,36 +64,31 @@ function resizeImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.8)
     });
 }
 
-// initAddService()
-// Attach behavior to the Add button on the Add Service page. When clicked
-// it validates inputs, converts an optional image file to a base64 string,
-// sends a POST to the backend with the service data, and then navigates
-// back to the services listing on success.
+// Wire the Add button: validate inputs, convert optional image, POST.
 function initAddService(){
     const addBtn = document.getElementById('add-service-btn');
     if(!addBtn) return; // page doesn't have the add button — nothing to do
 
-    // Grab the form fields from the page. If any are missing we do nothing.
+    // Get form elements (name, description, price, image)
     const nameEl = document.getElementById('service-name');
     const descEl = document.getElementById('service-description');
     const priceEl = document.getElementById('service-price');
     const fileEl = document.getElementById('service-image');
 
-    // Handler for the Add button click. Validation -> optional image -> POST
+    // On click: validate fields, prepare image (if any), send POST.
     addBtn.addEventListener('click', async function(){
         const name = nameEl.value.trim();
         const description = descEl.value.trim();
         const price = parseFloat(priceEl.value);
         const file = fileEl.files && fileEl.files[0];
 
-    // Basic validation: name, description and price must be present
+    // Basic validation: require name, description and price
         if(!name || !description || Number.isNaN(price)){
             alert('Please fill in name, description and price.');
             return;
         }
 
-    // If the user selected a file, resize and convert it to a data URL.
-    // If resizing fails we fall back to a direct conversion.
+    // If file selected: try to resize/compress; otherwise convert raw.
     let imageData = null;
     if(file){
         try{
@@ -110,8 +98,8 @@ function initAddService(){
             imageData = await fileToDataUrl(file);
         }
     }
-    // Build the JSON payload. Only include imageData when an image exists.
-    const payload = { name: name, description: description, price: price };
+    // Build JSON payload; include imageData only when present.
+    const payload = { name: name, description: description, price: price};
     if (imageData) payload.imageData = imageData;
 
         console.log('Sending POST payload to backend:', payload);
@@ -125,10 +113,8 @@ function initAddService(){
             });
             console.log('Backend response status:', res.status);
             if(res.ok){
-                // If the server returned the created object, save the uploaded
-                // image in browser localStorage keyed by the new service id.
-                // This helps the UI show the image immediately while the
-                // server-side image persistence is in progress or not available.
+                // Save the image in localStorage by service id so the UI can
+                // display it immediately (optional client-side cache).
                 let created = null;
                 try{ created = await res.json(); }catch(e){ console.warn('Non-JSON create response', e); }
                 if(created && imageData){
@@ -151,9 +137,7 @@ function initAddService(){
     });
 }
 
-// getQueryParam(name)
-// Read a query parameter value from the current page URL. Returns null if
-// the parameter is missing or the URL cannot be parsed.
+// Read a query parameter value from the page URL (or null if missing).
 function getQueryParam(name){
     try{
         const url = new URL(location.href);
@@ -161,25 +145,10 @@ function getQueryParam(name){
     }catch(e){ return null; }
 }
 
-// initModifyService()
-// In this project the inline modify editor is disabled. This stub detects
-// a ?id= query parameter and logs the id. It intentionally does not attach
-// any editing behavior so Add flow remains the priority.
-function initModifyService(){
-    const serviceId = getQueryParam('id');
-   
-    if(serviceId){
-        // intentionally do nothing for single-service modify view
-        console.log('initModifyService stub: modify/edit UI disabled (serviceId=', serviceId, ')');
-    }
-}
-
-
-// Run initialization code when the page has loaded. Each init function is
-// safe to call on any page — it checks for required elements before acting.
+// (modify UI removed) helper stub was here but not needed.
+// Initialize behavior on DOM ready: enable add and list.
 document.addEventListener('DOMContentLoaded', function(){
     initAddService();
-    initModifyService();
     // If provider services page is loaded, fetch list from API and render it
     if(document.getElementById('services-container')){
         loadServices();
@@ -187,12 +156,8 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-// loadServices()
-// Request the list of services from the backend and build DOM cards for
-// each entry inside the #services-container. Each card includes Delete and
-// Modify buttons. Images are chosen in this order:
-// 1) client-saved image (localStorage), 2) server-provided imageData, 3)
-//    server-provided image property, 4) default placeholder image.
+// Fetch services and render a card for each. Cards include a Delete button.
+// Image selection order: local cache, server imageData, server image, placeholder.
 async function loadServices(){
     const container = document.getElementById('services-container');
     if(!container) return;
@@ -214,13 +179,13 @@ async function loadServices(){
             block.className = 'service-block';
             block.dataset.serviceId = service.id;
 
+            // Delete button: confirm then call DELETE /api/services/{id}
             const del = document.createElement('button'); del.className = 'delete-service'; del.title = 'Delete service'; del.textContent = '−';
             del.addEventListener('click', async function(){
                 if(!confirm('Delete this service?')) return;
                 try{
                     const dres = await fetch(API_BASE + '/' + encodeURIComponent(service.id), { method: 'DELETE' });
                     if(dres.ok){
-                        // remove any client-side stored image for this service
                         try{ localStorage.removeItem('service-image-' + service.id); }catch(e){}
                         block.remove();
                     } else { alert('Delete failed'); }
@@ -238,18 +203,11 @@ async function loadServices(){
             try{ clientImage = localStorage.getItem('service-image-' + service.id); }catch(e){ clientImage = null; }
             img.src = clientImage || service.imageData || service.image || '/images2/default_profile.jpg';
             const p = document.createElement('p'); p.textContent = service.description || '';
-            const modify = document.createElement('button');
-            modify.type = 'button';
-            modify.className = 'modify-service';
-            modify.textContent = 'Modify';
-            modify.setAttribute('aria-label', 'Modify service');
-         
 
-            block.appendChild(del);
-            block.appendChild(h2);
-            block.appendChild(img);
-            block.appendChild(p);
-            block.appendChild(modify);
+                block.appendChild(del);
+                block.appendChild(h2);
+                block.appendChild(img);
+                block.appendChild(p);
 
             rowsWrapper.appendChild(block);
         });

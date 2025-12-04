@@ -46,7 +46,7 @@ public class Services {
     @NotNull
     private boolean available = true;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "provider_id")
     @JsonIgnoreProperties("services")
     private Provider provider;
