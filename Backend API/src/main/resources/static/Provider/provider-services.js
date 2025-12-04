@@ -3,8 +3,7 @@
 // - List services and delete a service
 // Uses fetch() for API calls. Images are converted to base64 data URLs.
 
-// Base URL for the backend services API. Using a relative path keeps
-// requests same-origin when pages are served by the Spring Boot server.
+// Base URL for the backend services API. 
 const API_BASE = '/api/services';
 
 // Convert a File to a base64 data URL (or null if no file).
@@ -20,7 +19,7 @@ function fileToDataUrl(file){
 }
 
 // Resize and compress an image file to a JPEG data URL. Returns null if
-// file is missing. Useful to reduce upload size.
+// file is missing. This is to reduce upload size.
 function resizeImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.8){
     return new Promise((resolve, reject) => {
         if(!file) return resolve(null);
@@ -64,10 +63,10 @@ function resizeImageFile(file, maxWidth = 1200, maxHeight = 1200, quality = 0.8)
     });
 }
 
-// Wire the Add button: validate inputs, convert optional image, POST.
+//Add button: validate inputs, convert optional image, POST.
 function initAddService(){
     const addBtn = document.getElementById('add-service-btn');
-    if(!addBtn) return; // page doesn't have the add button — nothing to do
+    if(!addBtn) return; // page doesn't have the add button, nothing done
 
     // Get form elements (name, description, price, image)
     const nameEl = document.getElementById('service-name');
@@ -75,7 +74,7 @@ function initAddService(){
     const priceEl = document.getElementById('service-price');
     const fileEl = document.getElementById('service-image');
 
-    // On click: validate fields, prepare image (if any), send POST.
+    // On click it validates fields, prepares image, and sends POST.
     addBtn.addEventListener('click', async function(){
         const name = nameEl.value.trim();
         const description = descEl.value.trim();
@@ -114,7 +113,7 @@ function initAddService(){
             console.log('Backend response status:', res.status);
             if(res.ok){
                 // Save the image in localStorage by service id so the UI can
-                // display it immediately (optional client-side cache).
+                // display it immediately.
                 let created = null;
                 try{ created = await res.json(); }catch(e){ console.warn('Non-JSON create response', e); }
                 if(created && imageData){
@@ -145,7 +144,6 @@ function getQueryParam(name){
     }catch(e){ return null; }
 }
 
-// (modify UI removed) helper stub was here but not needed.
 // Initialize behavior on DOM ready: enable add and list.
 document.addEventListener('DOMContentLoaded', function(){
     initAddService();
@@ -156,8 +154,8 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 
-// Fetch services and render a card for each. Cards include a Delete button.
-// Image selection order: local cache, server imageData, server image, placeholder.
+// Fetch services and render a card for each.
+// Image selection order is local cache, server imageData, server image, placeholder.
 async function loadServices(){
     const container = document.getElementById('services-container');
     if(!container) return;
@@ -165,12 +163,12 @@ async function loadServices(){
         const res = await fetch(API_BASE);
         if(!res.ok){ console.warn('GET ' + API_BASE + ' returned', res.status); return; }
         const list = await res.json();
-        // clear existing dynamic content but preserve the add button if present
+        // clear existing dynamic content but preserve the add button
         const addBtn = container.querySelector('#add-service-btn');
         container.innerHTML = '';
         if(addBtn) container.appendChild(addBtn);
 
-        // render rows (simple single-column flow; adjust as needed)
+        // render rows 
         const rowsWrapper = document.createElement('div');
         rowsWrapper.className = 'rows';
 

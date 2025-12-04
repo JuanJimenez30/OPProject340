@@ -104,7 +104,6 @@ function buildReviewCard(review){
         return card;
     }
 
-    // Single-provider app: no ownership checks needed. Always allow reply when none exists.
 
     // assemble with Reply button and attach reply form behavior
     card.appendChild(img);
@@ -181,7 +180,7 @@ function buildReviewCard(review){
     return card;
 }
 
-// Fetch reviews for provider, render list, and show friendly messages on errors.
+// Fetch reviews for provider, render list, and show messages on errors.
 async function loadProviderReviews(providerId){
     const container = document.getElementById('reviews-container');
     if(!container) return;
