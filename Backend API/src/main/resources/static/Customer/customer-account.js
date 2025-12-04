@@ -13,11 +13,13 @@ async function signupCustomer(form) {
         const nameEl = form.querySelector('#Name');
         name = nameEl ? nameEl.value.trim() : '';
     }
+    // gather email password, address, phone number
     const email = form.querySelector('#email').value.trim();
     const password = form.querySelector('#password').value;
     const address = form.querySelector('#address').value.trim();
     const phoneNumber = form.querySelector('#phonenumber').value.trim();
 
+    // construct payload
     const payload = {
         name,
         email,
@@ -30,14 +32,23 @@ async function signupCustomer(form) {
     statusEl.textContent = '';
 
     try {
+        // make the POST request
         const res = await fetch(`${API_BASE}/api/customers`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
 
-        const text = await (res.headers.get('content-type') || '').includes('application/json') ? res.json() : res.text();
+        // parse response based on content type
+        const contentType = res.headers.get('content-type') || '';
+        let text;
+        if (contentType.includes('application/json')) {
+            text = await res.json();
+        } else {
+            text = await res.text();
+        }
 
+        // handles a failure response
         if (!res.ok) {
             const msg = typeof text === 'string' ? text : JSON.stringify(text);
             statusEl.style.color = 'crimson';
@@ -48,6 +59,7 @@ async function signupCustomer(form) {
 
         // successful, save id and redirect to profile page
         const created = (typeof text === 'object') ? text : JSON.parse(text);
+        console.log('signup created:', created);
         const id = created.id || createdIdFrom(created);
         if (id) {
             localStorage.setItem('customerId', String(id));
@@ -56,12 +68,16 @@ async function signupCustomer(form) {
             // short delay to show message
             setTimeout(() => { window.location.href = '/Customer/CustomerProfile.html'; }, 900);
             return created;
-        } else {
+        } 
+        // no id found in response
+        else {
             statusEl.style.color = 'crimson';
             statusEl.textContent = 'Signup succeeded but no id returned.';
             return created;
         }
-    } catch (err) {
+    } 
+    // network or other error
+    catch (err) {
         statusEl.style.color = 'crimson';
         statusEl.textContent = 'Network error during signup. See console.';
         console.error('Network error during signup:', err);
@@ -69,6 +85,7 @@ async function signupCustomer(form) {
     }
 }
 
+// ensures there's a status element in the form to show messages
 function ensureStatusElement(form) {
     let el = document.getElementById('signup-status');
     if (!el) {
@@ -80,17 +97,19 @@ function ensureStatusElement(form) {
     return el;
 }
 
+// tries to extract an id from various object shapes
 function createdIdFrom(obj) {
     if (!obj) return null;
     if (obj.id) return obj.id;
-    // try some common shapes
     if (obj.data && obj.data.id) return obj.data.id;
     return null;
 }
 
+// loads and displays the customer profile
 async function loadCustomerProfile() {
     const profileContainer = document.querySelector('#Customer-Info-Section .info-box');
     if (!profileContainer) return;
+    // get customer id from localStorage
     const id = localStorage.getItem('customerId');
     if (!id) {
         // no id: show message and link to signup
@@ -111,6 +130,7 @@ async function loadCustomerProfile() {
     }
 }
 
+// renders the customer profile into the container
 function renderCustomerProfile(container, c) {
     // clear and fill
     container.innerHTML = '';
@@ -129,6 +149,7 @@ function renderCustomerProfile(container, c) {
         return [lab, p];
     };
 
+    // append elements to container
     container.appendChild(h2);
     container.appendChild(img);
 

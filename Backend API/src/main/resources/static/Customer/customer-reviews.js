@@ -7,6 +7,7 @@
   - Shows concise server messages in-page to avoid console noise.
 */
 
+// loads pre-existing reviews for selected service
 document.addEventListener('DOMContentLoaded', () => {
     const serviceSelect = document.getElementById('service-name');
     const reviewForm = document.getElementById('review-form');
@@ -19,8 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewForm.after(serverMessageEl);
     }
 
+    // base API URL
     const API_BASE = window.location.origin || 'http://localhost:8080';
 
+    // tries to get current customer id from localStorage
     function getCurrentCustomerId() {
         const v = localStorage.getItem('customerId');
         if (!v) return null;
@@ -28,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return Number.isFinite(n) && n > 0 ? n : null;
     }
 
+    // safely reads response body as string (JSON or text)
     async function safeReadBodyAsString(response) {
         try {
             const ct = response.headers.get('content-type') || '';
@@ -41,8 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // loads services into the select dropdown
     async function loadServices() {
         try {
+            // GET /api/services
             const res = await fetch(`${API_BASE}/api/services`);
             if (!res.ok) {
                 const body = await safeReadBodyAsString(res);
@@ -58,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // fills the service select with options
     function populateServiceOptions(services) {
         serviceSelect.innerHTML = '<option value="">Select a service</option>';
         if (!Array.isArray(services)) return;
@@ -112,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // reviewer name
             const name = document.createElement('h2');
+
             // Prefer stored customer.name (username); fall back to firstName/lastName, then email, then Anonymous
             let fullName = 'Anonymous';
             if (r.customer) {
@@ -124,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // stars
             const stars = document.createElement('p');
             stars.id = 'stars';
-            // simple star rendering: repeat Provider's star (U+2B50 '⭐') overallRating times
+            // simple star rendering: repeat Provider's star overallRating
             const ratingNum = (r.overallRating !== undefined) ? Number(r.overallRating) : 0;
             stars.textContent = '⭐'.repeat(Math.max(0, Math.min(5, ratingNum)));
 
@@ -133,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             serviceH3.textContent = r.services && r.services.name ? `Service: ${r.services.name}` : '';
             const dateH3 = document.createElement('h3');
             if (r.dateCreated) {
-                // try to format date string
+                // try to format date string still not working well
                 const d = new Date(r.dateCreated);
                 if (!isNaN(d)) dateH3.textContent = `Date Created: ${d.toLocaleDateString()}`;
             }
@@ -143,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text.id = 'review-text';
             text.innerHTML = escapeHtml(r.comment || r.reviewText || r.comment || '');
 
-            // assemble
+            // assemble the card
             div.appendChild(img);
             div.appendChild(name);
             div.appendChild(stars);
@@ -155,11 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // simple HTML escape to prevent XSS in review comments
     function escapeHtml(str) {
         return String(str).replace(/[&<>"'\/]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;","/":"&#x2F;"}[s]));
     }
 
-    // Submit payload matching Reviews entity
+    // Submit payload matching Reviews entity on form submit
     reviewForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         serverMessageEl.textContent = '';
@@ -186,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
+            // POST /api/reviews
             const res = await fetch(`${API_BASE}/api/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
