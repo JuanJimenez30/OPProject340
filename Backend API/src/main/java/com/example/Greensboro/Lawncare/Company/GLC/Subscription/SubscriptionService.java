@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +43,8 @@ public class SubscriptionService {
         Subscription subscription = subscriptionRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Subscription not found"));
         subscription.setActive(false);
+        // record end date when subscription is cancelled
+        subscription.setEndDate(LocalDateTime.now());
         subscriptionRepository.save(subscription);
     }
 
