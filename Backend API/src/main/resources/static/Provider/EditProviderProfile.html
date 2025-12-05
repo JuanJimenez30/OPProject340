@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Home.css">
+    <link rel="stylesheet" href="/Provider/PProfile.css">
+    <link rel="stylesheet" href="/Provider/EditProviderProfile.css">
+    <title>Edit Provider Profile</title>
+</head>
+<body>
+    <div id="header">
+        <img src="/images2/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/LogIn.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='PProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <div id="home-container">
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='Home.html'" class="navButton">Home</button>
+            <button onclick="location.href='PServices.html'" class="navButton">Services</button>
+            <button onclick="location.href='CustomerInfo.html'" class="navButton">Customer Info</button>
+            <button onclick="location.href='Reviews.html'" class="navButton">Reviews</button>
+        </div>
+        <hr>
+        <div id="Provider-Info-Section">
+            <div class="edit-form-container">
+                <h2>Edit Provider Profile</h2>
+                <form id="editProviderForm">
+                    <div class="form-group">
+                        <label for="edit-name">Name:</label>
+                        <input type="text" id="edit-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">Email:</label>
+                        <input type="email" id="edit-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-phone">Phone Number:</label>
+                        <input type="tel" id="edit-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-password">Password (leave blank to keep current):</label>
+                        <input type="password" id="edit-password" name="password">
+                    </div>
+                    <div id="edit-status"></div>
+                    <div class="form-buttons">
+                        <button type="submit" class="save-btn">Save Changes</button>
+                        <button type="button" class="cancel-btn" onclick="location.href='PProfile.html'">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/Provider/provider-account.js"></script>
+    <script>
+    // load profile data when page is ready
+    document.addEventListener('DOMContentLoaded', function(){
+        if (window.loadEditProviderForm) window.loadEditProviderForm();
+    });
+    </script>
+</body>
+</html>

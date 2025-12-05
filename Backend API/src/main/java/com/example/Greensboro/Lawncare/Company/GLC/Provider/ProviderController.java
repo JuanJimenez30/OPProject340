@@ -19,7 +19,7 @@ public class ProviderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Provider> updateProvider(@PathVariable Long id, @Valid @RequestBody Provider providerDetails) {
+    public ResponseEntity<Provider> updateProvider(@PathVariable Long id, @RequestBody Provider providerDetails) {
         return ResponseEntity.ok(providerService.updateProvider(id, providerDetails));
     }
 
