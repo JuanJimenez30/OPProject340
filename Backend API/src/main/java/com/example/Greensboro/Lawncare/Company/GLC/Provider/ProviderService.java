@@ -31,6 +31,11 @@ public class ProviderService {
         provider.setEmail(providerDetails.getEmail());
         provider.setPhoneNumber(providerDetails.getPhoneNumber());
 
+        // If a new password was supplied, update it. Leave unchanged if blank/null.
+        if (providerDetails.getPassword() != null && !providerDetails.getPassword().isBlank()) {
+            provider.setPassword(providerDetails.getPassword());
+        }
+
         return providerRepository.save(provider);
     }
 

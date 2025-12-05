@@ -32,19 +32,19 @@
         <hr> 
         <div id="profile-page-container">
     <div id="provider-profile">
-        <h1>Provider Profile</h1>
-    <img src="/images2/PProfileIcon.png" alt="Provider Profile Picture" id="Pprofile-picture">
-        <p><b>Name</b>:</p>
-        <p>John Doe</p>
-        <p><b>Email</b>:</p>
-        <p>john.doe@glc.com</p>
-        <p><b>Phone</b>:</p>
-        <p>(123) 456-7890</p>
-        <p><b>Company</b>:</p>
-        <p>Greensboro LawnCare Company</p>
-        <button onclick="location.href='Home.html'">Back to Home</button>
-
+            <!-- Provider profile content is dynamically loaded by /Provider/provider-account.js when available -->
+            <h1>Provider Profile</h1>
+            <img src="/images2/PProfileIcon.png" alt="Provider Profile Picture" id="Pprofile-picture">
+            <div id="provider-loading" class="loading-skeleton">
+                <p>Unable to load profile</p>
+            </div>
+            <button onclick="location.href='Home.html'">Back to Home</button>
     </div>
     </div>
 </body>
+<script src="/Provider/provider-account.js"></script>
+<script>
+    // Replace static profile with live data if script loaded
+    document.addEventListener('DOMContentLoaded', function(){ if(window.loadProviderProfileContainer) window.loadProviderProfileContainer(); });
+</script>
 </html>

@@ -26,6 +26,7 @@
     border: 2px solid #554aed;
     border-radius: 6px;
     cursor: pointer;
+    
 }
 #provider-profile button:hover {
     background-color: #5bc4f0;
