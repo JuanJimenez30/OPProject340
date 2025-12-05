@@ -34,23 +34,65 @@
         </div>
         <hr>
         <div id="Customer-Info-Section">
-            <div class="info-box lawncare">
-                <h2>Profile</h2>
-                <img src="/images2/default_profile.jpg" alt="Default profile" id="default-profile">
-                <h3>Name</h3>
-                <p>John Doe</p>
-                <h3>Email</h3>
-                <p>Email</p>
-                <h3>Phone Number</h3>
-                <p>123-456-7890</p>
-                <h3>Address</h3>
-                <p>123 Main St, Greensboro, NC 27401</p>
-                <h3>Payment Method</h3>
-                <p>Visa ending in 1234</p>
-                <button onclick="location.href='Home.html'">Back to Home</button>
+            <!-- Dynamic customer list will be rendered here -->
+            <div id="customers-placeholder" class="info-box" style="text-align:center;">
+                <h2>Loading customers…</h2>
             </div>
         </div>
     </div>
+    <!-- add scripts and choose behavior based on presence of an `id` query param -->
+    <script src="/Customer/customer-account.js"></script>
+    <script src="/Provider/provider-customers.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            try{
+                const url = new URL(location.href);
+                const id = url.searchParams.get('id');
+                if (id) {
+                    // If id is present, fetch that customer and render in read-only mode
+                    const profileContainer = document.querySelector('#Customer-Info-Section .info-box');
+                    if (profileContainer && window.renderCustomerProfile) {
+                        (async () => {
+                            try {
+                                const res = await fetch(`${window.location.origin}/api/customers/${encodeURIComponent(id)}`);
+                                if (!res.ok) {
+                                    profileContainer.innerHTML = `<h2>Error</h2><p>Could not load profile (${res.status})</p>`;
+                                    return;
+                                }
+                                const customer = await res.json();
+                                // Explicitly render as not-owned (read-only) for providers
+                                window.renderCustomerProfile(profileContainer, customer, false);
+                                // Override the "Back to Home" button to go to the Provider home page
+                                try {
+                                    const btns = profileContainer.querySelectorAll('button');
+                                    for (const b of btns) {
+                                        if (b.textContent && b.textContent.trim().toLowerCase().startsWith('back')) {
+                                            b.onclick = () => { location.href = '/Provider/Home.html'; };
+                                            break;
+                                        }
+                                    }
+                                } catch (err) {
+                                    console.warn('Could not adjust back button for provider preview:', err);
+                                }
+                            } catch (err) {
+                                profileContainer.innerHTML = `<h2>Error</h2><p>Network error while loading profile.</p>`;
+                                console.error('Error loading customer profile (preview):', err);
+                            }
+                        })();
+                    } else if (window.loadCustomerProfile) {
+                        // Fallback to existing loader
+                        window.loadCustomerProfile();
+                    }
+                } else {
+                    // Otherwise show the provider customer list
+                    if (window.loadProviderCustomers) window.loadProviderCustomers();
+                }
+            }catch(e){
+                // fallback: show the list
+                if(window.loadProviderCustomers) window.loadProviderCustomers();
+            }
+        });
+    </script>
 </body>
 
 </html>

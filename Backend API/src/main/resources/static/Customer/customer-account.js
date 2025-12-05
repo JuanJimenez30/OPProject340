@@ -109,8 +109,13 @@ function createdIdFrom(obj) {
 async function loadCustomerProfile() {
     const profileContainer = document.querySelector('#Customer-Info-Section .info-box');
     if (!profileContainer) return;
-    // get customer id from localStorage
-    const id = localStorage.getItem('customerId');
+    // Allow viewing a specific customer via query param `id`, else fall back to localStorage
+    let id = null;
+    try{
+        const url = new URL(location.href);
+        id = url.searchParams.get('id') || null;
+    }catch(e){ id = null; }
+    if(!id) id = localStorage.getItem('customerId');
     if (!id) {
         // no id: show message and link to signup
         profileContainer.innerHTML = `<h2>No profile</h2><p>No customer id found. Please sign up or log in.</p><button onclick="location.href='/Customer/SignUp.html'">Sign Up</button>`;
@@ -123,7 +128,10 @@ async function loadCustomerProfile() {
             return;
         }
         const customer = await res.json();
-        renderCustomerProfile(profileContainer, customer);
+        // Determine whether the viewer is the owner of this profile
+        const ownId = localStorage.getItem('customerId');
+        const isOwn = ownId && String(ownId) === String(id);
+        renderCustomerProfile(profileContainer, customer, isOwn);
     } catch (err) {
         profileContainer.innerHTML = `<h2>Error</h2><p>Network error while loading profile.</p>`;
         console.error('Error loading customer profile:', err);
@@ -131,7 +139,7 @@ async function loadCustomerProfile() {
 }
 
 // renders the customer profile into the container
-function renderCustomerProfile(container, c) {
+function renderCustomerProfile(container, c, isOwn = true) {
     // clear and fill
     container.innerHTML = '';
     const h2 = document.createElement('h2');
@@ -170,10 +178,13 @@ function renderCustomerProfile(container, c) {
     backBtn.addEventListener('click', () => { location.href = '/Customer/CustomerHome.html'; });
     container.appendChild(backBtn);
 
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'Edit Profile';
-    editBtn.addEventListener('click', () => { location.href = '/Customer/EditCustomerProfile.html'; });
-    container.appendChild(editBtn);
+    // Only show edit button when viewing own profile (prevent provider editing customer directly)
+    if (isOwn) {
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit Profile';
+        editBtn.addEventListener('click', () => { location.href = '/Customer/EditCustomerProfile.html'; });
+        container.appendChild(editBtn);
+    }
 }
 
 // Expose functions for inline use if needed
