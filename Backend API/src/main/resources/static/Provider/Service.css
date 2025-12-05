@@ -101,6 +101,11 @@
     margin-bottom: 10px;
     text-indent: 3em;
 }
+ #services-container .service-availability {
+     font-size: 18px;
+     font-weight: 600;
+     margin-top: 8px;
+ }
  #services-container .modify-service {
     background-color: #0028f0;
     color: white;
@@ -236,6 +241,14 @@
 #add-service-container label {
     font-size: 25px;
     font-weight: 600;
+}
+
+/* Modify page background: reuse the same profile background as customer edit */
+#modify-service-page {
+    background: url('/images2/lawncare-for_background_profilePage.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 10px 0;
 }
 
 #add-service-container input,

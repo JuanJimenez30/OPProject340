@@ -7,6 +7,7 @@
     <title>Modify Service Page</title>
     <link rel="stylesheet" href="/Home.css">
     <link rel="stylesheet" href="/Provider/Service.css">
+    <link rel="stylesheet" href="/Provider/EditProviderProfile.css">
     <!-- <style>
         /* small page layout helpers to match prototype */
         #services-container { padding: 1rem; }
@@ -39,20 +40,55 @@
     </div>
     <hr>
     <div id="modify-service-page">
-        <h1 class="titles">Modify Services</h1>
-        <div id="services-container">
-            <div class="rows">
-                <div class="service-block">
-                    <h2>Mowing</h2>
-                    <img src="/images2/MowingSPage.jpg" alt="Mowing" class="service-image">
-                    <p>Keep your lawn looking neat and tidy with our professional mowing services. We offer regular mowing schedules to fit your needs.</p>
-                </div>
+        <h1 class="titles">Modify Service</h1>
+        <div id="modify-service-container">
+            <div class="edit-form-container">
+                <h2>Modify Service</h2>
+                <form id="modifyServiceForm">
+                    <div class="form-group">
+                        <label for="service-name">Service Name</label>
+                        <input type="text" id="service-name" name="service-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-description">Service Description</label>
+                        <textarea id="service-description" name="service-description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-image">Upload Image (optional — replaces existing)</label>
+                        <input type="file" id="service-image" name="service-image" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-price">Service Price (USD)</label>
+                        <input type="number" id="service-price" name="service-price" required min="0" step="0.01" placeholder="e.g. 29.99">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service-available">Available</label>
+                        <select id="service-available" name="service-available">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" id="modify-service-btn" class="save-btn">Save Changes</button>
+                        <button type="button" class="cancel-btn" onclick="location.href='/Provider/PServices.html'">Back to Services</button>
+                    </div>
+
+                    <div id="modify-status" style="margin-top:16px;"></div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- load the shared provider script -->
+    <!-- load the shared provider script which also provides edit helpers -->
     <script src="/Provider/provider-services.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){ if(window.initEditService) window.initEditService(); });
+    </script>
 
 </body>
 

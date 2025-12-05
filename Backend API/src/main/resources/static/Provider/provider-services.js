@@ -162,7 +162,8 @@ async function loadServices(){
     const container = document.getElementById('services-container');
     if(!container) return;
     try{
-        const res = await fetch(API_BASE);
+    // For provider view we fetch all services (including unavailable)
+    const res = await fetch(API_BASE + '/all');
         if(!res.ok){ console.warn('GET ' + API_BASE + ' returned', res.status); return; }
         const list = await res.json();
         // clear existing dynamic content but preserve the add button if present
@@ -204,14 +205,88 @@ async function loadServices(){
             img.src = clientImage || service.imageData || service.image || '/images2/default_profile.jpg';
             const p = document.createElement('p'); p.textContent = service.description || '';
 
+                // Modify button: navigate to Modify.html with service id
+                const mod = document.createElement('button'); mod.className = 'modify-service'; mod.title = 'Edit service'; mod.textContent = 'Edit';
+                mod.addEventListener('click', function(){
+                    location.href = '/Provider/Modify.html?id=' + encodeURIComponent(service.id);
+                });
+
+                // Append header elements first
                 block.appendChild(del);
                 block.appendChild(h2);
                 block.appendChild(img);
                 block.appendChild(p);
+
+                // Availability indicator
+                const avail = document.createElement('p');
+                avail.className = 'service-availability';
+                avail.textContent = 'Available: ' + (service.available ? 'Yes' : 'No');
+                block.appendChild(avail);
+                // Place modify button at the bottom of the card and style it using existing save-btn class
+                mod.className = 'modify-service save-btn';
+                block.appendChild(mod);
 
             rowsWrapper.appendChild(block);
         });
 
         container.appendChild(rowsWrapper);
     }catch(err){ console.error('Error loading services', err); }
+}
+
+
+// Initialize edit form on Modify.html: load service by id and wire submit.
+function initEditService(){
+    const form = document.getElementById('modifyServiceForm');
+    if(!form) return; // not on Modify page
+    const id = getQueryParam('id');
+    if(!id){ showModifyStatus('No service id provided in URL', 'error'); return; }
+    // populate form
+    loadServiceForEdit(id);
+    form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        await handleModifySubmit(id);
+    });
+}
+
+async function loadServiceForEdit(id){
+    try{
+        const res = await fetch(API_BASE + '/' + encodeURIComponent(id));
+        if(!res.ok){ showModifyStatus('Unable to load service (' + res.status + ')', 'error'); return; }
+        const s = await res.json();
+        document.getElementById('service-name').value = s.name || '';
+        document.getElementById('service-description').value = s.description || '';
+        document.getElementById('service-price').value = s.price != null ? s.price : '';
+        document.getElementById('service-available').value = (s.available === true) ? 'true' : 'false';
+    }catch(err){ console.error('Error loading service for edit', err); showModifyStatus('Network error while loading service', 'error'); }
+}
+
+function showModifyStatus(msg, type='info'){
+    const el = document.getElementById('modify-status'); if(!el) return; el.textContent = msg; el.className = type;
+}
+
+async function handleModifySubmit(id){
+    const name = document.getElementById('service-name').value.trim();
+    const description = document.getElementById('service-description').value.trim();
+    const price = parseFloat(document.getElementById('service-price').value);
+    const available = document.getElementById('service-available').value === 'true';
+    const fileEl = document.getElementById('service-image');
+    const file = fileEl && fileEl.files && fileEl.files[0];
+    if(!name || !description || Number.isNaN(price)){ showModifyStatus('Name, description and price are required', 'error'); return; }
+    showModifyStatus('Updating...', 'info');
+    let imageData = null;
+    if(file){
+        try{ imageData = await resizeImageFile(file, 1200, 1200, 0.8); }catch(e){ console.warn('resize failed', e); imageData = await fileToDataUrl(file); }
+    }
+    const payload = { name, description, price, available };
+    if(imageData) payload.imageData = imageData;
+    try{
+        const res = await fetch(API_BASE + '/' + encodeURIComponent(id), {
+            method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload)
+        });
+        if(!res.ok){ const txt = await res.text().catch(()=>res.statusText); showModifyStatus('Update failed ('+res.status+'): '+txt, 'error'); console.error('Update failed', res.status, txt); return; }
+        // update local cache if needed
+        if(imageData){ try{ localStorage.setItem('service-image-' + id, imageData); }catch(e){}}
+        showModifyStatus('Updated successfully — redirecting...', 'success');
+        setTimeout(()=> location.href = '/Provider/PServices.html', 1000);
+    }catch(err){ console.error('Network error during update', err); showModifyStatus('Network error during update', 'error'); }
 }
