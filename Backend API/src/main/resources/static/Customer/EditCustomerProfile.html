@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Home.css">
+    <link rel="stylesheet" href="/Customer/CustomerProfile.css">
+    <link rel="stylesheet" href="/Customer/EditCustomerProfile.css">
+    <title>Edit Profile Page</title>
+</head>
+
+<body>
+    <div id="header">
+        <img src="/images2/Logo_Company.png" alt="Company Logo" id="company-logo">
+
+        <div class="header-btn-group">
+            <button id="logout-btn" onclick="location.href='/LogIn.html'" aria-label="Logout">
+                <span class="logout-icon">🔒</span>
+                <span class="logout-text">Logout</span>
+            </button>
+            <button id="profile-btn" onclick="location.href='CustomerProfile.html'" aria-label="Profile">
+                <span class="profile-icon">👤</span>
+                <span class="profile-text">Profile</span>
+            </button>
+        </div>
+    </div>
+    <div id="home-container">
+        <hr>
+        <div id="navigationMenu">
+            <button onclick="location.href='CustomerHome.html'" class="navButton">Home</button>
+            <button onclick="location.href='Services.html'" class="navButton">Services</button>
+            <button onclick="location.href='ViewCartPage.html'" class="navButton">View Cart</button>
+            <button onclick="location.href='FeedBackPage.html'" class="navButton">FeedBack</button>
+        </div>
+        <hr>
+        <div id="Customer-Info-Section">
+            <div class="edit-form-container">
+                <h2>Edit Profile</h2>
+                <form id="editCustomerForm">
+                    <div class="form-group">
+                        <label for="edit-name">Name:</label>
+                        <input type="text" id="edit-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">Email:</label>
+                        <input type="email" id="edit-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-phone">Phone Number:</label>
+                        <input type="tel" id="edit-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-address">Address:</label>
+                        <input type="text" id="edit-address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-card-number">Credit Card Number:</label>
+                        <input type="text" id="edit-card-number" name="cardNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-password">Password (leave blank to keep current):</label>
+                        <input type="password" id="edit-password" name="password">
+                    </div>
+                    <div id="edit-status"></div>
+                    <div class="form-buttons">
+                        <button type="submit" class="save-btn">Save Changes</button>
+                        <button type="button" class="cancel-btn" onclick="location.href='CustomerProfile.html'">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="/Customer/customer-account.js"></script>
+<script>
+// load profile data when page is ready
+document.addEventListener('DOMContentLoaded', function(){
+    if (window.loadEditProfileForm) window.loadEditProfileForm();
+});
+</script>

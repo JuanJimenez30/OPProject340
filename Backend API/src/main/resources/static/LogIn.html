@@ -21,7 +21,7 @@
     <button type="button" onclick="location.href='/Customer/SignUp.html'">Sign Up</button>
         </form>
         <script>
-            // Login handler — attempts server-side provider authentication, falls back to simple customer mock
+            // Login handler — attempts provider auth first, then falls back to customer auth
             (function(){
                 const form = document.getElementById('loginForm');
                 form.addEventListener('submit', async function(e){
@@ -31,49 +31,72 @@
                     const password = (fd.get('password') || '').trim();
 
                     if(!username || !password){
-                        alert('Please enter both username (email) and password.');
+                        alert('Please enter both username (or email) and password.');
                         return;
                     }
 
-                    // Keep the simple in-page customer mock for demo customers
-                    if(username === 'customer' && password === 'customer123'){
-                        sessionStorage.setItem('glc_logged_in', 'true');
-                        sessionStorage.setItem('glc_user', username);
-                        sessionStorage.setItem('glc_role', 'customer');
-                        window.location.href = '/Customer/CustomerHome.html';
-                        return;
-                    }
-
-                    // Otherwise attempt provider authentication against the backend
                     try{
-                        const res = await fetch('/api/providers/authenticate', {
+                        // 1) Try provider authentication
+                        const providerRes = await fetch('/api/providers/authenticate', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ username: username, password: password })
                         });
 
-                        if(res.ok){
-                            const provider = await res.json();
-                            // store minimal session info in sessionStorage for the frontend
+                        if(providerRes.ok){
+                            const provider = await providerRes.json();
                             sessionStorage.setItem('glc_logged_in', 'true');
                             sessionStorage.setItem('glc_user', provider.email || provider.name || username);
                             sessionStorage.setItem('glc_role', 'provider');
-                            // optional: store provider id
                             if(provider.id) sessionStorage.setItem('glc_provider_id', String(provider.id));
                             window.location.href = '/Provider/Home.html';
                             return;
-                        } else if (res.status === 401) {
-                            alert('Invalid provider credentials.');
-                            return;
-                        } else if (res.status === 400) {
+                        }
+
+                        // If provider auth returned 401, try customer auth
+                        if(providerRes.status === 401){
+                            const customerRes = await fetch('/api/customers/login', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ username: username, password: password })
+                            });
+
+                            if(customerRes.ok){
+                                const customer = await customerRes.json();
+                                sessionStorage.setItem('glc_logged_in', 'true');
+                                sessionStorage.setItem('glc_user', customer.email || customer.username || username);
+                                sessionStorage.setItem('glc_role', 'customer');
+                                if(customer.id){
+                                    sessionStorage.setItem('glc_customer_id', String(customer.id));
+                                    localStorage.setItem('customerId', String(customer.id));
+                                }
+                                window.location.href = '/Customer/CustomerHome.html';
+                                return;
+                            } else if (customerRes.status === 401){
+                                alert('Invalid credentials.');
+                                return;
+                            } else if (customerRes.status === 400){
+                                alert('Bad request to authentication endpoint.');
+                                return;
+                            } else {
+                                const txt = await customerRes.text().catch(()=>'');
+                                console.error('Customer auth error', customerRes.status, txt);
+                                alert('Authentication failed — see console for details.');
+                                return;
+                            }
+                        }
+
+                        // providerRes was not ok and not 401
+                        if(providerRes.status === 400){
                             alert('Bad request to authentication endpoint.');
                             return;
                         } else {
-                            const txt = await res.text().catch(()=>'');
-                            console.error('Auth error', res.status, txt);
+                            const txt = await providerRes.text().catch(()=>'');
+                            console.error('Auth error', providerRes.status, txt);
                             alert('Authentication failed — see console for details.');
                             return;
                         }
+
                     }catch(err){
                         console.error('Network error during authentication', err);
                         alert('Network error — unable to contact authentication server.');

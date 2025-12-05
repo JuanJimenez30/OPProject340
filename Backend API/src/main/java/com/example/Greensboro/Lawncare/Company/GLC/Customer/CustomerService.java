@@ -24,10 +24,32 @@ public class CustomerService {
         Customer customer = customerRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
 
-        customer.setName(customerDetails.getName());
-        customer.setEmail(customerDetails.getEmail());
-        customer.setAddress(customerDetails.getAddress());
-        customer.setPhoneNumber(customerDetails.getPhoneNumber());
+        // Update only provided fields
+        if (customerDetails.getName() != null && !customerDetails.getName().isEmpty()) {
+            customer.setName(customerDetails.getName());
+        }
+        
+        if (customerDetails.getEmail() != null && !customerDetails.getEmail().isEmpty()) {
+            customer.setEmail(customerDetails.getEmail());
+        }
+        
+        if (customerDetails.getAddress() != null && !customerDetails.getAddress().isEmpty()) {
+            customer.setAddress(customerDetails.getAddress());
+        }
+        
+        if (customerDetails.getPhoneNumber() != null && !customerDetails.getPhoneNumber().isEmpty()) {
+            customer.setPhoneNumber(customerDetails.getPhoneNumber());
+        }
+        
+        // Update password if provided and not empty
+        if (customerDetails.getPassword() != null && !customerDetails.getPassword().isEmpty()) {
+            customer.setPassword(customerDetails.getPassword());
+        }
+        
+        // Update card number if provided
+        if (customerDetails.getCardNumber() != null) {
+            customer.setCardNumber(customerDetails.getCardNumber());
+        }
 
         return customerRepository.save(customer);
     }

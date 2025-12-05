@@ -19,7 +19,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}") // Update customer by ID
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @Valid @RequestBody Customer customerDetails) {
+    public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customerDetails) {
         return ResponseEntity.ok(customerService.updateCustomer(id, customerDetails));
     }
 
