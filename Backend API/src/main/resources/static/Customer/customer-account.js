@@ -174,6 +174,11 @@ function renderCustomerProfile(container, c) {
     editBtn.textContent = 'Edit Profile';
     editBtn.addEventListener('click', () => { location.href = '/Customer/EditCustomerProfile.html'; });
     container.appendChild(editBtn);
+
+    // Load and display subscriptions
+    if (c.id) {
+        loadCustomerSubscriptions(c.id);
+    }
 }
 
 // Expose functions for inline use if needed
@@ -313,3 +318,115 @@ async function handleEditFormSubmit(e, customerId) {
 // Expose edit functions for inline use
 window.loadEditProfileForm = loadEditProfileForm;
 window.handleEditFormSubmit = handleEditFormSubmit;
+
+// Load and display customer subscriptions
+async function loadCustomerSubscriptions(customerId) {
+    console.log('Loading subscriptions for customer:', customerId);
+    try {
+        const res = await fetch(`${API_BASE}/api/subscriptions/customer/${encodeURIComponent(customerId)}`);
+        console.log('Subscriptions response:', res.status);
+        if (!res.ok) {
+            console.error('Could not load subscriptions:', res.status);
+            // Still render the subscriptions box with "No active subscriptions" message
+            renderSubscriptions([]);
+            return;
+        }
+        const subscriptions = await res.json();
+        console.log('Subscriptions data:', subscriptions);
+        renderSubscriptions(subscriptions);
+    } catch (err) {
+        console.error('Error loading subscriptions:', err);
+        // Still render the subscriptions box with "No active subscriptions" message
+        renderSubscriptions([]);
+    }
+}
+
+// Render subscriptions in a dedicated section
+function renderSubscriptions(subs) {
+    console.log('Rendering subscriptions:', subs);
+    const section = document.getElementById('Customer-Info-Section');
+    console.log('Section element:', section);
+    if (!section) {
+        console.error('Customer-Info-Section not found');
+        return;
+    }
+
+    const subsBox = document.createElement('div');
+    subsBox.className = 'subscriptions-box';
+
+    const h2 = document.createElement('h2');
+    h2.textContent = 'Active Subscriptions';
+    subsBox.appendChild(h2);
+
+    if (!Array.isArray(subs) || subs.length === 0) {
+        const noSubs = document.createElement('p');
+        noSubs.className = 'no-subscriptions';
+        noSubs.textContent = 'No active subscriptions';
+        subsBox.appendChild(noSubs);
+    } else {
+        subs.forEach(sub => {
+            const item = document.createElement('div');
+            item.className = 'subscription-item';
+
+            const name = document.createElement('h4');
+            name.textContent = sub.services ? sub.services.name : 'Service';
+            item.appendChild(name);
+
+            const type = document.createElement('p');
+            type.innerHTML = `<span class="sub-type">${sub.type.replace('_', ' ')}</span>`;
+            item.appendChild(type);
+
+            if (sub.services && sub.services.description) {
+                const desc = document.createElement('p');
+                desc.textContent = sub.services.description;
+                item.appendChild(desc);
+            }
+
+            if (sub.services && sub.services.price) {
+                const price = document.createElement('p');
+                price.textContent = `Price: $${Number(sub.services.price).toFixed(2)}`;
+                item.appendChild(price);
+            }
+
+            // Add cancel button
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = 'cancel-subscription-btn';
+            cancelBtn.textContent = 'Cancel Subscription';
+            cancelBtn.addEventListener('click', async function() {
+                if (!confirm(`Cancel subscription to ${sub.services ? sub.services.name : 'Service'}?`)) {
+                    return;
+                }
+                try {
+                    const res = await fetch(`${API_BASE}/api/subscriptions/${sub.id}/cancel`, { method: 'POST' });
+                    if (res.ok) {
+                        console.log('Subscription cancelled successfully');
+                        item.remove();
+                        // Check if there are any more subscriptions
+                        const remainingItems = document.querySelectorAll('.subscription-item');
+                        if (remainingItems.length === 0) {
+                            // Reload subscriptions to show "No active subscriptions" message
+                            const customerId = localStorage.getItem('customerId');
+                            if (customerId) {
+                                loadCustomerSubscriptions(customerId);
+                            }
+                        }
+                    } else {
+                        alert('Could not cancel subscription');
+                    }
+                } catch (err) {
+                    console.error('Error cancelling subscription:', err);
+                    alert('Network error while cancelling subscription');
+                }
+            });
+            item.appendChild(cancelBtn);
+
+            subsBox.appendChild(item);
+        });
+    }
+
+    section.appendChild(subsBox);
+    console.log('Subscriptions box appended:', subsBox);
+}
+
+// Expose subscription functions for inline use
+window.loadCustomerSubscriptions = loadCustomerSubscriptions;
