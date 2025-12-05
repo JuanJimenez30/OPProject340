@@ -60,31 +60,25 @@ async function loadSelectedService(){
                 const lab = document.querySelector(`label[for="${selected.id}"]`);
                 let price = null;
                 if(lab) price = parsePriceFromLabel(lab.textContent);
+                // If label parsing fails, use service base price
+                if(price === null && s.price) price = Number(s.price);
 
                 // get customer id from localStorage
                 const customerId = localStorage.getItem('customerId');
                 if(!customerId){ if(!confirm('No customer signed in. Go to Sign Up?')) return; location.href='/Customer/SignUp.html'; return; }
 
-                const now = new Date().toISOString();
-                const payload = {
-                    customer: { id: Number(customerId) },
-                    services: { id: Number(serviceId) },
+                // Add to local cart (localStorage) instead of creating subscription immediately
+                let cart = JSON.parse(localStorage.getItem('tempCart') || '[]');
+                const cartItem = {
+                    serviceId: Number(serviceId),
+                    serviceName: s.name,
                     type: type,
-                    startDate: now,
-                    active: true
+                    price: price || 0
                 };
-
-                try{
-                    const r = await fetch(API_SUBSCRIPTIONS, {
-                        method: 'POST',
-                        headers: { 'Content-Type':'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    const txt = await (r.headers.get('content-type')||'').includes('application/json') ? r.json() : r.text();
-                    if(!r.ok){ alert('Add to cart failed: ' + (typeof txt === 'string' ? txt : JSON.stringify(txt))); return; }
-                    // On success redirect to cart
-                    location.href = '/Customer/ViewCartPage.html';
-                }catch(err){ console.error('Add subscription error', err); alert('Network error adding to cart.'); }
+                cart.push(cartItem);
+                localStorage.setItem('tempCart', JSON.stringify(cart));
+                alert('Added to cart!');
+                location.href = '/Customer/ViewCartPage.html';
             });
         }
     }catch(err){ console.error('Error loading selected service', err); }
