@@ -34,14 +34,14 @@
         <div id="customer-info-box1">
     <div id="customer-info">
         <h1>Current Customers</h1>
-        <ul>
-            <li>Customer 1: John Doe <a href="/Provider/CustomerInfoPreview.html">: View Details</a></li>
-            <li>Customer 2: Jane Smith <a href="/Provider/CustomerInfoPreview.html">: View Details</a></li>
-            <li>Customer 3: Bob Johnson <a href="/Provider/CustomerInfoPreview.html">: View Details</a></li>
+        <ul id="customers-list">
+            <!-- dynamically populated list items will replace the previous hardcoded entries -->
         </ul>
     </div>
         </div>
 
         </div>
 </body>
+<script src="/Provider/provider-customers.js"></script>
+<script>document.addEventListener('DOMContentLoaded', function(){ if(window.loadProviderCustomers) window.loadProviderCustomers(); });</script>
 </html>
