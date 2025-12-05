@@ -132,6 +132,14 @@ async function loadCustomerProfile() {
         const ownId = localStorage.getItem('customerId');
         const isOwn = ownId && String(ownId) === String(id);
         renderCustomerProfile(profileContainer, customer, isOwn);
+        // If the viewer is the owner, also load their subscriptions
+        if (isOwn && window.loadCustomerSubscriptions) {
+            try {
+                window.loadCustomerSubscriptions(customer.id);
+            } catch (err) {
+                console.error('Error invoking loadCustomerSubscriptions:', err);
+            }
+        }
     } catch (err) {
         profileContainer.innerHTML = `<h2>Error</h2><p>Network error while loading profile.</p>`;
         console.error('Error loading customer profile:', err);
@@ -430,7 +438,13 @@ function renderSubscriptions(subs) {
         });
     }
 
-    section.appendChild(subsBox);
+    // Try to place the subscriptions box right after the profile info-box
+    const profileBox = section.querySelector('.info-box');
+    if (profileBox && profileBox.parentNode) {
+        profileBox.parentNode.insertBefore(subsBox, profileBox.nextSibling);
+    } else {
+        section.appendChild(subsBox);
+    }
     console.log('Subscriptions box appended:', subsBox);
 }
 

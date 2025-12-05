@@ -38,14 +38,13 @@
             </div>
         </div>
     </div>
+    <script src="/Customer/customer-account.js"></script>
+    <script>
+    // load profile when page is ready
+    document.addEventListener('DOMContentLoaded', function(){
+        if (window.loadCustomerProfile) window.loadCustomerProfile();
+    });
+    </script>
 </body>
 
 </html>
-
-<script src="/Customer/customer-account.js"></script>
-<script>
-// load profile when page is ready
-document.addEventListener('DOMContentLoaded', function(){
-    if (window.loadCustomerProfile) window.loadCustomerProfile();
-});
-</script>
