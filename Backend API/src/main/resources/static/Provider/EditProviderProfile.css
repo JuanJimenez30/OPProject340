@@ -45,6 +45,18 @@
     transition: border-color 0.3s ease;
 }
 
+.form-group textarea,
+.form-group select,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .form-group input:focus {
     outline: none;
     border-color: #4CAF50;
@@ -58,6 +70,24 @@
     text-align: center;
     min-height: 20px;
     font-weight: 600;
+}
+
+/* allow the modify form to reuse the same status styling */
+#modify-status { 
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    min-height: 20px;
+    font-weight: 600;
+}
+
+/* Background for provider edit section (match customer edit background) */
+#Provider-Info-Section {
+    background: url('/images2/lawncare-for_background_profilePage.jpeg');
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
 }
 
 #edit-status.success {

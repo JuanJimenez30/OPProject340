@@ -23,7 +23,7 @@ public class ServicesController {
     
 
     @PutMapping("/{id}")
-    public ResponseEntity<Services> updateService(@PathVariable Long id, @Valid @RequestBody Services serviceDetails) {
+    public ResponseEntity<Services> updateService(@PathVariable Long id, @RequestBody Services serviceDetails) {
         return ResponseEntity.ok(servicesService.updateService(id, serviceDetails));
     }
 
@@ -41,6 +41,11 @@ public class ServicesController {
     @GetMapping
     public ResponseEntity<List<Services>> getAvailableServices() {
         return ResponseEntity.ok(servicesService.getAvailableServices());
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Services>> getAllServices() {
+        return ResponseEntity.ok(servicesService.getAllServices());
     }
 
 
