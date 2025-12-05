@@ -141,6 +141,7 @@ function renderCustomerProfile(container, c) {
     img.alt = 'Default profile';
     img.id = 'default-profile';
 
+    // helper to create label + value elements
     const makeField = (label, value) => {
         const lab = document.createElement('h3');
         lab.textContent = label;
@@ -168,8 +169,147 @@ function renderCustomerProfile(container, c) {
     backBtn.textContent = 'Back to Home';
     backBtn.addEventListener('click', () => { location.href = '/Customer/CustomerHome.html'; });
     container.appendChild(backBtn);
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit Profile';
+    editBtn.addEventListener('click', () => { location.href = '/Customer/EditCustomerProfile.html'; });
+    container.appendChild(editBtn);
 }
 
 // Expose functions for inline use if needed
 window.signupCustomer = signupCustomer;
 window.loadCustomerProfile = loadCustomerProfile;
+
+// Load customer profile data into the edit form
+async function loadEditProfileForm() {
+    const id = localStorage.getItem('customerId');
+    if (!id) {
+        showEditStatus('No customer id found. Please log in.', 'error');
+        setTimeout(() => { location.href = '/LogIn.html'; }, 2000);
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}/api/customers/${encodeURIComponent(id)}`);
+        if (!res.ok) {
+            showEditStatus(`Could not load profile (${res.status})`, 'error');
+            return;
+        }
+        const customer = await res.json();
+        populateEditForm(customer);
+    } catch (err) {
+        showEditStatus('Network error while loading profile.', 'error');
+        console.error('Error loading customer profile:', err);
+    }
+}
+
+// Populate the edit form with current customer data
+function populateEditForm(customer) {
+    document.getElementById('edit-name').value = customer.name || customer.username || '';
+    document.getElementById('edit-email').value = customer.email || '';
+    document.getElementById('edit-phone').value = customer.phoneNumber || '';
+    document.getElementById('edit-address').value = customer.address || '';
+    document.getElementById('edit-card-number').value = customer.cardNumber || '';
+    document.getElementById('edit-password').value = '';
+    
+    // Store customer ID for use in form submission
+    window.currentCustomerId = customer.id;
+    
+    // Set up form submit handler
+    const form = document.getElementById('editCustomerForm');
+    form.addEventListener('submit', (e) => handleEditFormSubmit(e, customer.id));
+}
+
+// Show status messages in the edit form
+function showEditStatus(message, type = 'info') {
+    const statusEl = document.getElementById('edit-status');
+    if (!statusEl) return;
+    
+    statusEl.textContent = message;
+    statusEl.className = type;
+}
+
+// Handle the edit form submission
+async function handleEditFormSubmit(e, customerId) {
+    e.preventDefault();
+    
+    const name = document.getElementById('edit-name').value.trim();
+    const email = document.getElementById('edit-email').value.trim();
+    const phone = document.getElementById('edit-phone').value.trim();
+    const address = document.getElementById('edit-address').value.trim();
+    const cardNumber = document.getElementById('edit-card-number').value.trim();
+    const password = document.getElementById('edit-password').value;
+    
+    // Validation
+    if (!name || !email) {
+        showEditStatus('Name and email are required.', 'error');
+        return;
+    }
+    
+    // Optional: Validate card number if provided
+    if (cardNumber && cardNumber.length > 0) {
+        const cleanCardNumber = cardNumber.replace(/\s/g, '');
+        if (cleanCardNumber.length < 13 || cleanCardNumber.length > 19) {
+            showEditStatus('Card number must be between 13 and 19 digits.', 'error');
+            return;
+        }
+        if (!/^\d+$/.test(cleanCardNumber)) {
+            showEditStatus('Card number must contain only digits.', 'error');
+            return;
+        }
+    }
+    
+    // Build update payload
+    const payload = {
+        name,
+        email,
+        phoneNumber: phone,
+        address
+    };
+    
+    // Only include card number if provided - convert to Long (send last 16 digits or full number if valid)
+    if (cardNumber && cardNumber.length > 0) {
+        const cleanCardNumber = cardNumber.replace(/\s/g, '');
+        // Send as number - backend expects Long
+        const cardNumAsLong = parseInt(cleanCardNumber, 10);
+        if (!isNaN(cardNumAsLong)) {
+            payload.cardNumber = cardNumAsLong;
+        }
+    }
+    
+    if (password && password.length > 0) {
+        payload.password = password;
+    }
+    
+    try {
+        showEditStatus('Updating profile...', 'info');
+        
+        const res = await fetch(`${API_BASE}/api/customers/${encodeURIComponent(customerId)}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        
+        if (!res.ok) {
+            const text = await res.text();
+            showEditStatus(`Update failed (${res.status}): ${text}`, 'error');
+            console.error('Update failed:', res.status, text);
+            return;
+        }
+        
+        showEditStatus('Profile updated successfully! Redirecting...', 'success');
+        
+        // Redirect to profile page after brief delay
+        setTimeout(() => {
+            location.href = '/Customer/CustomerProfile.html';
+        }, 1500);
+        
+    } catch (err) {
+        showEditStatus('Network error during update. See console.', 'error');
+        console.error('Network error during update:', err);
+    }
+}
+
+// Expose edit functions for inline use
+window.loadEditProfileForm = loadEditProfileForm;
+window.handleEditFormSubmit = handleEditFormSubmit;
