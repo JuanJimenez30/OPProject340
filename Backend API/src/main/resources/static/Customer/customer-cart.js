@@ -32,9 +32,11 @@ function renderCart(container, items, customerId){
     }
 
     items.forEach((item, index) => {
-        let displayPrice = item.price || 0;
+        // Use basePrice from cart item
+        let basePrice = item.basePrice || item.price || 0;
+        let displayPrice = basePrice;
         
-        // Apply price adjustments based on subscription type if price is present
+        // Apply price adjustments based on subscription type
         if(displayPrice > 0){
             if(item.type === 'WEEKLY') displayPrice = Number((displayPrice * 0.85).toFixed(2));
             else if(item.type === 'BIWEEKLY') displayPrice = Number((displayPrice * 0.93).toFixed(2));
@@ -74,10 +76,18 @@ function renderCart(container, items, customerId){
         try{
             const now = new Date().toISOString();
             for(const item of tempCart){
+                // Calculate the actual price to store based on subscription type
+                let subscriptionPrice = item.basePrice || item.price || 0;
+                if(subscriptionPrice > 0){
+                    if(item.type === 'WEEKLY') subscriptionPrice = Number((subscriptionPrice * 0.85).toFixed(2));
+                    else if(item.type === 'BIWEEKLY') subscriptionPrice = Number((subscriptionPrice * 0.93).toFixed(2));
+                }
+                
                 const payload = {
                     customer: { id: Number(customerId) },
                     services: { id: Number(item.serviceId) },
                     type: item.type,
+                    price: subscriptionPrice,
                     startDate: now,
                     active: true
                 };

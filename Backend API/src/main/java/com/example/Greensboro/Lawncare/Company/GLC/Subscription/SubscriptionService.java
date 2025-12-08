@@ -30,6 +30,9 @@ public class SubscriptionService {
         subscription.setActive(subscriptionDetails.isActive());
         subscription.setStartDate(subscriptionDetails.getStartDate());
         subscription.setEndDate(subscriptionDetails.getEndDate());
+        if(subscriptionDetails.getPrice() != null) {
+            subscription.setPrice(subscriptionDetails.getPrice());
+        }
 
         return subscriptionRepository.save(subscription);
     }
