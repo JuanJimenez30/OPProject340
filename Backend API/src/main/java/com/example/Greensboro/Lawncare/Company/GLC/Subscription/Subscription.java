@@ -40,6 +40,8 @@ public class Subscription {
 
     @NotNull
     private boolean active = true;
+
+    private Double price;
 }
 
 enum SubscriptionType {

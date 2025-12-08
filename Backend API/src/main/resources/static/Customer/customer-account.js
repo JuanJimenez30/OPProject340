@@ -396,9 +396,11 @@ function renderSubscriptions(subs) {
                 item.appendChild(desc);
             }
 
-            if (sub.services && sub.services.price) {
+            // Display subscription price if available, otherwise fall back to service price
+            const displayPrice = sub.price !== null && sub.price !== undefined ? sub.price : (sub.services && sub.services.price ? sub.services.price : null);
+            if (displayPrice) {
                 const price = document.createElement('p');
-                price.textContent = `Price: $${Number(sub.services.price).toFixed(2)}`;
+                price.textContent = `Price: $${Number(displayPrice).toFixed(2)}`;
                 item.appendChild(price);
             }
 

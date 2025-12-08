@@ -56,12 +56,8 @@ async function loadSelectedService(){
                 const typeMap = { 'one-time': 'ONE_TIME', 'weekly': 'WEEKLY', 'bi-weekly': 'BIWEEKLY' };
                 const type = typeMap[typeValue] || 'ONE_TIME';
 
-                // determine price for display: try reading label text
-                const lab = document.querySelector(`label[for="${selected.id}"]`);
-                let price = null;
-                if(lab) price = parsePriceFromLabel(lab.textContent);
-                // If label parsing fails, use service base price
-                if(price === null && s.price) price = Number(s.price);
+                // Use base service price for storage
+                const basePrice = s.price ? Number(s.price) : 0;
 
                 // get customer id from localStorage
                 const customerId = localStorage.getItem('customerId');
@@ -73,7 +69,7 @@ async function loadSelectedService(){
                     serviceId: Number(serviceId),
                     serviceName: s.name,
                     type: type,
-                    price: price || 0
+                    basePrice: basePrice
                 };
                 cart.push(cartItem);
                 localStorage.setItem('tempCart', JSON.stringify(cart));
