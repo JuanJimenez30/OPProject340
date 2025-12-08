@@ -222,6 +222,16 @@ async function loadServices(){
                 avail.className = 'service-availability';
                 avail.textContent = 'Available: ' + (service.available ? 'Yes' : 'No');
                 block.appendChild(avail);
+
+                // Price display — show directly under availability
+                const priceEl = document.createElement('p');
+                priceEl.className = 'service-price';
+                if (service.price != null && !Number.isNaN(Number(service.price))) {
+                    priceEl.textContent = `Base Price: $${Number(service.price).toFixed(2)}`;
+                } else {
+                    priceEl.textContent = 'Base Price: N/A';
+                }
+                block.appendChild(priceEl);
                 // Place modify button at the bottom of the card and style it using existing save-btn class
                 mod.className = 'modify-service save-btn';
                 block.appendChild(mod);

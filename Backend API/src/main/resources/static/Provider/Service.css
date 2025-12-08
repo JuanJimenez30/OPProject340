@@ -106,6 +106,12 @@
      font-weight: 600;
      margin-top: 8px;
  }
+ #services-container .service-price {
+     font-size: 18px;
+     color: #333;
+     font-weight: 700;
+     margin-top: 6px;
+ }
  #services-container .modify-service {
     background-color: #0028f0;
     color: white;
