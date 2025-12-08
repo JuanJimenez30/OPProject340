@@ -4,10 +4,11 @@
 - Customer
 
 ### Use Cases
-#### 1. Provider: Create provider profile use case:
-1. Provider P1 logs in for the first time and creates a profile.
-2. P1 creates new services S1 and S2 with values for searchable criteria C1, C2, C3 (C1=V1, C2=V2, C3=V3).  
-P1 exits the app.
+#### 1. Provider: Services use case:
+1. Provider logs in for the first time
+2. Provider creates new services  with attributes of price, availability, description, and image. 
+3. Provider modifies one of the added services
+4. Provider exits the app.
 
 #### 2. Customer: Create customer profile:
 1. Customer C1 logs in for the first time and creates a profile.
@@ -26,6 +27,6 @@ P1 exits the app.
 2. C1 views service S1 and the positive review.
 3. C1 subscribes to S1. C1 exits.
 
-#### 6. Provider:  Reply to Review, View Customer Statistics, & Modify Profile use cases
-1. Provider P1 logs in and reads their review and replies with thanks. 
-2. P1 views customer statistics.  P1 modifies his profile. P1 exits.
+#### 6. Provider:  Reply to Review, View Customer Details, & Modify Profile use cases
+1. Provider logs in and reads their review and replies with thanks. 
+2. Provider views customer details. Provider modifies their profile. Provider exits.
